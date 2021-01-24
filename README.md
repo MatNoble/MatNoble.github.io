@@ -1,26 +1,12 @@
-# <div align="center"><a title="matnoble.me" href="https://matnoble.me"><img align="center" width="75" height="75" src="https://raw.githubusercontent.com/MatNoble/matnoble.me/master/static/icons/android-chrome-512x512.png"></a> MatNoble </div>
+## <a title="matnoble.me" href="https://matnoble.me"><img align="center" width="75" height="75" src="https://raw.githubusercontent.com/MatNoble/matnoble.me/master/static/icons/android-chrome-512x512.png"></a> MatNoble
 
-<p align="center">
-<a href="https://matnoble.me/about/"><img alt="Author" src="https://img.shields.io/badge/Author-MetNoble-blue?style=flat-square"/></a>
-<a href="https://gohugo.io/"><img alt="Generator" src="https://img.shields.io/badge/Generator-Hugo-ff4088?&logo=hugo"/></a>
-<a href="https://github.com/reuixiy/hugo-theme-meme"><img alt="Theme" src="https://img.shields.io/badge/Theme-MemE-2a6df4?&logo=meme"/></a>
-<a href="https://www.netlify.com/"><img alt="Build" src="https://img.shields.io/badge/Build-Netlify-00c7b7?&logo=netlify"/></a>
-<a href="https://ipfs.io/"><img src="https://img.shields.io/badge/Host-IPFS-65c2cb?&logo=ipfs" alt="Host" /></a>
-<a href="https://app.netlify.com/sites/matnoble/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/d10378f2-cffe-40f3-9374-2dd0de14f971/deploy-status"/></a>
-</p>
-<p align="center">
+[![Home](https://img.shields.io/badge/Home-MatNoble-blue)](https://guanqr.com)
+[![Generator](https://img.shields.io/badge/Generator-Hugo-ff4088?&logo=hugo)](https://gohugo.io/)
+[![Theme](https://img.shields.io/badge/Theme-MemE-2a6df4)](https://github.com/reuixiy/hugo-theme-meme)
+[![Built on GitHub](https://github.com/MatNoble/matnoble.github.io/workflows/build/badge.svg)](https://github.com/MatNoble/matnoble.github.io/actions)
+
+
 关键词： 生活、学习、数学、线性代数、有限元、计算机、Matlab、Python、LaTeX
-</p>
-
-你可以通过以下任一链接访问我的博客：
-
-1. https://matnoble.me/
-2. https://ipfs.io/ipns/matnoble.me/
-3. https://cloudflare-ipfs.com/ipns/matnoble.me/
-4. https://gateway.pinata.cloud/ipns/matnoble.me/
-5. 其他 [IPFS 网关](https://ipfs.github.io/public-gateway-checker/)……
-
-你也可以在计算机执行 `ipfs daemon` 命令，通过 http://127.0.0.1:8080/ipns/matnoble.me/ 访问我的博客。*参考[这里](https://io-oi.me/tech/host-your-blog-on-ipfs/#%E5%8E%9F%E7%94%9F%E9%83%A8%E7%BD%B2)*
 
 ## 文章精选
 
