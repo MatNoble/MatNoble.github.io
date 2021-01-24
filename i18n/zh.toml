@@ -1,0 +1,11 @@
+[warning]
+other = "Ｗarning"
+
+[note]
+other = "Note"
+
+[info]
+other = "Info"
+
+[tip]
+other = "Tips"

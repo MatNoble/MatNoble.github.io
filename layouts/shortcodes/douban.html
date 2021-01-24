@@ -1,0 +1,19 @@
+
+{{ if .IsNamedParams }}
+
+<meta name="referrer" content="same-origin">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iMuFeng/bmdb@1.8.0/dist/Bmdb.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/iMuFeng/bmdb@1.8.0/dist/Bmdb.min.js"></script>
+
+<script>
+new Bmdb({
+  type: 'movies',
+  selector: '.container',
+  secret: '7bf4205a0a62d00409f3cd70b0736e1a11a9a6a60f7231567f056819787b8096',
+  noMoreText: '没有更多数据了',
+  limit: 30
+})
+</script>
+
+{{ end }}

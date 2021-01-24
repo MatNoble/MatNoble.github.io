@@ -1,0 +1,13 @@
+# SSG 生成的文件所在目录
+public
+
+# Node.js
+node_modules
+
+# Hugo
+resources
+
+# ipfs-deploy
+.env
+
+CNAME

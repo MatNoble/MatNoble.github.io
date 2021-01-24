@@ -1,0 +1,7 @@
+{{ if .IsNamedParams }}
+
+<div class="row" style="position: relative; width: 100%; padding-bottom: 100%; padding-top: 0px; height: 0; overflow: hidden;">
+  <embed src="{{ .Get "url" }}" style="position: absolute; top: 0; left: 0; width: 100%; height: {{ if .Get "height" }}{{ .Get "height" }}{{ else }}100%{{ end }};" type="application/pdf">
+</div>
+
+{{ end }}
