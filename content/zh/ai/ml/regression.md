@@ -17,4 +17,4 @@ series = ["AI"]
 [GitHub 源码](https://github.com/MatNoble/MachineLearningNote/blob/main/regression.py)
 
 问题：
-数据归一化
+数据归一化！
