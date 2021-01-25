@@ -1,0 +1,27 @@
+{
+  "name": "matnoble.me",
+  "version": "1.0.0",
+  "description": "Ross's Blog",
+  "main": "index.js",
+  "scripts": {
+    "build": "hugo --gc --minify --cleanDestinationDir",
+    "update-theme": "git submodule update --rebase --remote"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatNoble/matnoble.github.io.git"
+  },
+  "keywords": [
+    "blog",
+    "hugo",
+    "hugo-theme-meme"
+  ],
+  "author": "Guanqr",
+  "license": "CC-BY-NC-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/MatNoble/matnoble.github.io/issues"
+  },
+  "homepage": "https://github.com/MatNoble/matnoble.github.io#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}

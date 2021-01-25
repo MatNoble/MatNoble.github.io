@@ -11,12 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: 'Checkout codes'
-      uses: actions/checkout@v2
-      with:
-        submodules: true
-	
+    steps:	
     - name: 'Building...'
       uses: ./.github/actions/hugo-deploy
       env:
