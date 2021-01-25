@@ -11,9 +11,6 @@ copyright = "本博客遵循 [CC 4.0 BY-SA](https://creativecommons.org/licenses
 # 主题选择
 theme = "meme"
 
-# `hugo new` 新建文章自动打开的文本编辑器
-newContentEditor = ""
-
 # i18n
 defaultContentLanguage = "zh"
 defaultContentLanguageInSubdir = false
@@ -22,10 +19,10 @@ defaultContentLanguageInSubdir = false
 pluralizeListTitles = false
 
 # 摘要的字数限制
-summaryLength = 42
+summaryLength = 150
 
 # 是否开启 GitHub 风格的 Emoji 书写方式
-enableEmoji = true
+enableEmoji = false
 
 # 脚注的返回链接中的文本
 footnoteReturnLinkContents = "↩"
@@ -37,7 +34,7 @@ enableGitInfo = true
 enableRobotsTXT = false
 
 # 每一分页的文章数（仅对「文章摘要」首页布局有效）
-paginate = 5
+paginate = 10
 
 # URL 相关
 disablePathToLower = false
@@ -143,14 +140,13 @@ uglyURLs = false
     baseName = "rss"
 
 # lunr.js 的搜索索引
-#[outputFormats.SearchIndex]
-#    mediaType = "application/json"
-#    baseName = "search"
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
 
 # Hugo 的输出控制
 [outputs]
     page = ["HTML"]
-#    home = ["HTML", "SectionsAtom", "SectionsRSS",  "SearchIndex"]
     home = ["HTML", "SectionsAtom", "SectionsRSS"]
     section = ["HTML"]
     # 类别
@@ -395,8 +391,8 @@ uglyURLs = false
     homeTitle = "MatNoble"
     homeMotto = "每天进步一点点"
     homeDescription = ""
-    homeKeywords = ""
-    homeLinksDelimiter = ""
+    homeKeywords = "数学，计算机，分享知识"
+    homeLinksDelimiter = "."
 
 
     ######################################
@@ -416,7 +412,7 @@ uglyURLs = false
     # 注意：请保持此格式，更改数字
 
     # 站点的推特帐号
-    siteTwitter = "mat_noble"
+    siteTwitter = "freematnoble"
     # 说明：用于 Twitter Cards
 
 
@@ -455,13 +451,13 @@ uglyURLs = false
     # `sections`，则无法关闭树状布局
 
     # 是否显示文章标题
-    displayPosts = false
+    displayPosts = true
 
     # 是否显示每一分类下的文章数
     displayPostsCount = true
 
     # 设置一个非负数来限制每一分类下展示的文章数
-    limitPostsLimit = -1
+    limitPostsLimit = 5
 
 
     ######################################
@@ -489,7 +485,7 @@ uglyURLs = false
     displayListTitle = true
 
     # 日期的格式
-    listDateFormat = "1 月 2 日"
+    listDateFormat = "2006-01-02"
     # 注意：请遵循格式 https://gohugo.io/functions/format/
 
     # 日期的位置
@@ -497,15 +493,15 @@ uglyURLs = false
     # 说明：left（左边）或 right（右边）
 
     # 是否按月份分隔列表
-    groupByMonth = true
+    groupByMonth = false
 
     # 是否开启十二生肖
     chineseZodiac = true
 
     # 是否翻译年份（仅对年份标题有效）
-    i18nYear = true
+    i18nYear = false
     # 是否翻译月份（仅对月份标题有效）
-    i18nMonth = true
+    i18nMonth = false
 
 
     ######################################
@@ -641,7 +637,7 @@ uglyURLs = false
     #      的优先级高于此处
 
     # 是否禁用 MathJax 的右键菜单
-    disableMathJaxMenu = true
+    disableMathJaxMenu = false
 
 
     ######################################
@@ -651,8 +647,9 @@ uglyURLs = false
     enableMermaid = false
     # 说明：文章的 Front Matter 中的 `mermaid`
     #      的优先级高于此处
-
-
+    mermaidTheme = 'default'
+    mermaidThemeDark = 'dark'
+    
     ######################################
     # 评论
 
@@ -779,7 +776,7 @@ uglyURLs = false
     #      首页布局有效
 
     # 日期格式
-    postMetaDateFormat = "2006.1.2"
+    postMetaDateFormat = "2006-01-02"
     # 注意：请遵循格式 https://gohugo.io/functions/format/
 
     # 是否显示发布时间
@@ -964,7 +961,7 @@ uglyURLs = false
     # 分节标题、目录标题
     fontFamilyHeadings = "'Noto Serif SC', 'Amstelvar', serif"
     # 代码、上标、文章元信息、文章更新徽章、文章的 Git 版本信息、极简页脚、不蒜子站点浏览计数
-    fontFamilyCode = "'Source Code Pro', 'Noto Serif SC', monospace"
+    fontFamilyCode = "'JetBrains Mono','Source Code Pro', 'Noto Serif SC', monospace"
     # 引用
     fontFamilyQuote = "'Amstelvar', 'Noto Serif SC', serif"
     # 文章目录
@@ -1111,9 +1108,9 @@ uglyURLs = false
     #      的优先级高于此处
 
     # 仓库地址
-    repoURL = "https://github.com/MatNoble/matnoble.me"
+    repoURL = "https://github.com/MatNoble/matnoble.github.io"
     # 编辑地址
-    repoEditURL = "https://github.com/MatNoble/matnoble.me/blob/master"
+    repoEditURL = "https://github.com/MatNoble/matnoble.github.io/blob/master"
 
     # Git 的图标
     gitIcon = "code-branch"
@@ -1308,7 +1305,7 @@ uglyURLs = false
     # 是否开启竖直滚动
     enableOverflowY = true
     # 最大高度
-    maxHeight = 20
+    maxHeight = 32
     # 单位：em
 
     # 是否开启复制
@@ -1320,9 +1317,20 @@ uglyURLs = false
     ######################################
     # 文件指纹和子资源完整性（SRI）
 
-    # 是否开启
-    enableFingerprint = true
     # 说明：仅对 MemE 生成的 CSS 和 JS 有效
+
+    # 是否开启
+    enableFingerprint = false
+
+    # 是否开启子资源完整性验证
+    enableSRI = false
+    # 说明：开启子资源完整性验证后，该策略将使
+    #      MemE 的 CSS 和 JS 在像谷歌翻译这样
+    #      的第三方网站上被禁止。为了避免开启后
+    #      的这个问题，你的服务器必须向 CSS 和
+    #      JS 的请求中加上以下 Header：
+    #
+    #      Access-Control-Allow-Origin: *
 
 
     ######################################

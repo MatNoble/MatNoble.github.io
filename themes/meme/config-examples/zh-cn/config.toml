@@ -145,11 +145,8 @@ uglyURLs = false
     # home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
     home = ["HTML", "SectionsAtom", "SectionsRSS"]
     section = ["HTML"]
-    # 类别
-    taxonomyTerm = ["HTML"]
-    # 类别项
     taxonomy = ["HTML"]
-    # 说明：https://github.com/gohugoio/hugo/issues/4528#issuecomment-508488859
+    term = ["HTML"]
 
 # RSS & Atom 文章数限制
 [services.rss]
@@ -233,6 +230,10 @@ uglyURLs = false
 
     # 是否开启
     enableHeader = true
+
+    # 是否自动隐藏
+    enableHeaderAutoHide = false
+    # 说明：仅对弹性布局的顶栏有效
 
     # 是否在首页显示
     displayHeaderInHome = true
@@ -542,8 +543,6 @@ uglyURLs = false
     # 说明：仅在生产环境（production）下渲染
 
     enableServiceWorker = false
-    # 说明：需要第三方支持，暂见：
-    #      https://io-oi.me/tech/pwa-via-workbox/
 
 
     ######################################
@@ -778,8 +777,10 @@ uglyURLs = false
     ######################################
     # 分节标题锚点
 
-    # 是否开启
+    # 是否开启（全局设置）
     enableHeadingsAnchor = true
+    # 说明：文章的 Front Matter 中的 `anchor`
+    #      的优先级高于此处
 
     # 分节标题的级别范围
     headingsOpt = "1-6"
@@ -1159,6 +1160,9 @@ uglyURLs = false
     # 是否在首页显示
     displayBackToTopInHome = true
 
+    # 是否在移动端显示
+    displayBackToTopOnMobile = false
+
     # 按钮图标
     backToTopIcon = "arrow-up"
 
@@ -1168,6 +1172,9 @@ uglyURLs = false
 
     # 是否开启
     enableFooter = true
+
+    # 是否显示
+    displayFooter = true
 
     # 是否在首页显示
     displayFooterInHome = true
@@ -1244,9 +1251,20 @@ uglyURLs = false
     ######################################
     # 文件指纹和子资源完整性（SRI）
 
-    # 是否开启
-    enableFingerprint = true
     # 说明：仅对 MemE 生成的 CSS 和 JS 有效
+
+    # 是否开启文件指纹
+    enableFingerprint = true
+
+    # 是否开启子资源完整性验证
+    enableSRI = false
+    # 说明：开启子资源完整性验证后，该策略将使
+    #      MemE 的 CSS 和 JS 在像谷歌翻译这样
+    #      的第三方网站上被禁止。为了避免开启后
+    #      的这个问题，你的服务器必须向 CSS 和
+    #      JS 的请求中加上以下 Header：
+    #
+    #      Access-Control-Allow-Origin: *
 
 
     ######################################
@@ -1266,7 +1284,6 @@ uglyURLs = false
 
     # 是否开启
     enableSmoothScroll = true
-    # 说明：https://github.com/cferdinandi/smooth-scroll
 
 
     ######################################
