@@ -57,7 +57,7 @@ plt.savefig('images/norm.svg', bbox_inches='tight')
 plt.show()
 ```
 
-{{< imgcap src="https://imgkr.cn-bj.ufileos.com/40ec9695-7444-48e1-b616-2b49771c4642.svg" title="$\lVert \mathrm{x} \rVert_p = 1$, p = 0.25, 0.5, 1, 2, 4" width="60%">}}
+{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/norm.svg" title="$\lVert \mathrm{x} \rVert_p = 1$, p = 0.25, 0.5, 1, 2, 4" width="60%">}}
 
 <br>
 
