@@ -133,6 +133,27 @@ for value in user.values():
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TUA3v4K_zdZzSUjCtoO-0tbA_9sAvFQe?usp=sharing)
 
+### 栈 Stack
+
+{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210125201657.png" title="LIFO(Last In, First Out - 后进先出)" >}}
+
+|操作|说明|时间复杂度|
+|:-:|-|-|
+|.push()|将元素放置到栈顶|O(1) |
+|.pop()|将栈顶元素弹出| O(1)|
+|.top()|得到栈顶元素的值|O(1) |
+|.isEmpty()|判断栈内是否有元素| O(1)|
+
+**应用**
+- 函数调用栈
+- 浏览器前进后退
+- 匹配括号
+- 单调栈用来寻找下一个更大（更小）元素
+
+### 队列 Queue
+
+{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210125221038.png" title="FIFO (First In First Out - 先进先出)" >}}
+
 ## 字符串 String
 
 - f -> format
@@ -158,12 +179,6 @@ full_name = f"{first_name} {last_name}" # Ross MatNoble
 |.upper()|大写|
 |.lower()|小写|
 |.strip()|消除空格|
-
-<!-- 
-## 栈 
-
-<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210125201657.png"/>
--->
 
 ## 布尔 Bool
 
