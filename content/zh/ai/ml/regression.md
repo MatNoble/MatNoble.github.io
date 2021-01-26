@@ -58,9 +58,9 @@ $$
 
 [向量 p 范数](https://matnoble.me/math/linear-algebra/vector-and-matrix-norm/#p-%E8%8C%83%E6%95%B0)
 
-{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/Peek%202021-01-24%2018-49.gif" title="回归" >}}
+{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/linear-regression.gif" title="回归" >}}
 
-{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210124185354.png" title="回归" >}}
+{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210126200259.png" title="回归" >}}
 
 [GitHub 源码](https://github.com/MatNoble/MachineLearningNote/blob/main/regression.py)
 
