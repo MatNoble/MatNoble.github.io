@@ -12,7 +12,7 @@ mathjax = true
 
 - [x] [03. 数组中重复的数字](./#03-数组中重复的数字)
 - [x] [04. 二维数组中的查找](./#04-二维数组中的查找)
-- [ ] [05. 替换空格]
+- [x] [05. 替换空格](./#05-替换空格)
 
 ## 03. 数组中重复的数字
 
@@ -138,3 +138,48 @@ mat.findNumberIn2DArray(matrix, target)
 ### 复杂度
 - 时间复杂度：$O(m+n)$
 - 时间复杂度：$O(1)$
+
+## 05. 替换空格
+
+### 题目描述
+
+{{< notice note >}}
+请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+
+示例 1：  
+输入：s = "We are happy."  
+输出："We%20are%20happy."
+
+限制：  
+0 <= s 的长度 <= 10000
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+### 思路
+
+新增空间 `res`, 然后遍历
+
+### 代码
+
+```python
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        res = ''
+        for val in s:
+            if val == ' ':
+                res += '%20'
+            else:
+                res += val
+        return res
+
+mat = Solution()
+s = "We are happy."
+mat.replaceSpace(s)
+```
+
+### 复杂度
+- 时间复杂度: $O(n)$
+- 空间复杂度: $O(n)$
