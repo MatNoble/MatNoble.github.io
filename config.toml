@@ -441,7 +441,6 @@ uglyURLs = false
     #      `content/categories/_index.md`
     #      文件。
 
-
     ######################################
     # 分类页面
 
@@ -451,7 +450,7 @@ uglyURLs = false
     # `sections`，则无法关闭树状布局
 
     # 是否显示文章标题
-    displayPosts = true
+    displayPosts = false
 
     # 是否显示每一分类下的文章数
     displayPostsCount = true
@@ -525,7 +524,7 @@ uglyURLs = false
     # 说明：分区的名字即站点的 content 目录下
     #      的文件夹的名字。
 
-    mainSections = ["math","life","tech","ai"]
+    mainSections = ["math","life","tech","ai","dsa"]
 
 
     ######################################
