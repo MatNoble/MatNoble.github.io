@@ -13,6 +13,11 @@ mathjax = true
 - [x] [03. 数组中重复的数字](./#03-数组中重复的数字)
 - [x] [04. 二维数组中的查找](./#04-二维数组中的查找)
 - [x] [05. 替换空格](./#05-替换空格)
+- [x] [06. 从尾到头打印链表](./#06-从尾到头打印链表)
+- [x] [07. 重建二叉树](./#07-重建二叉树)
+- [ ] [09. 用两个栈实现队列]()
+- [x] [10-I. 斐波那契数列](./#10-i-斐波那契数列)
+- [ ] [10-II. 青蛙跳台阶问题]()
 
 ## 03. 数组中重复的数字
 
@@ -183,3 +188,121 @@ mat.replaceSpace(s)
 ### 复杂度
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(n)$
+
+## 06. 从尾到头打印链表
+
+### 题目描述
+{{< notice note>}}
+输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+
+示例 1：  
+输入：head = [1,3,2]
+输出：[2,3,1]
+
+来源：力扣（LeetCode）  
+链接： https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+### 思路
+- 后序遍历二叉数
+- 栈 --- 先进后出
+
+### 代码
+```python
+# Definition for singly-linked list.
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        if head is None: return []
+        return self.reversePrint(head.next) + [head.val]
+```
+
+### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
+## 07. 重建二叉树
+
+### 题目描述
+{{< notice note >}}
+输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。  
+例如，给出  
+`前序遍历 preorder = [3,9,20,15,7]`  
+`中序遍历  inorder = [9,3,15,20,7]`  
+返回如下的二叉树：
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+### 思路
+
+确定根节点，然后递归
+
+### 代码
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not preorder or not inorder: return None
+        node_val = preorder[0]
+        node_idx = inorder.index(node_val)
+        node = TreeNode(node_val)
+        node.left  = self.buildTree(preorder[1:node_idx+1], inorder[:node_idx])
+        node.right = self.buildTree(preorder[node_idx+1:], inorder[node_idx+1:])
+        return node
+```
+### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
+## 10-I. 斐波那契数列
+
+### 题目描述
+{{< notice note >}}
+写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。斐波那契数列的定义如下：  
+`F(0) = 0,   F(1) = 1`  
+`F(N) = F(N - 1) + F(N - 2), 其中 N > 1.`  
+`斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。`  
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+### 思路
+
+- 递归不可行， 时间复杂度达到 $O(n^2)$
+- 根据递推式 $f(n) = f(n-1) + f(n-2)$，动态规划
+`a, b, a + b`
+- 取余运算 mod
+$$
+(a+b)~\text{mod}~n = \left[(a~\text{mod}~n) + (b~\text{mod}~n) \right]~\text{mod}~n
+$$
+
+### 代码
+```python
+def Solution:
+    def fib(self, n):
+        a, b = 0, 1
+        for _ in range(n):
+            a, b = b, (a+b) % 1000000007
+        return a
+```
+
+### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(1)$
