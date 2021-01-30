@@ -3,7 +3,7 @@ title = "剑指 Offer"
 date = "2021-01-27T00:20:30+00:00"
 description = "Python 版"
 tags = ["剑指Offer题解","编程刷题"]
-keywords = ["leetcode","剑指offer","数据结构","python","数组","栈","队列","MatNoble"]
+keywords = ["leetcode","剑指offer","数据结构","python","数组","栈","队列","德摩根定律","MatNoble"]
 toc = false
 mathjax = true
 +++
@@ -17,7 +17,9 @@ mathjax = true
 - [x] [07. 重建二叉树](./#07-重建二叉树)
 - [ ] [09. 用两个栈实现队列]()
 - [x] [10-I. 斐波那契数列](./#10-i-斐波那契数列)
-- [ ] [10-II. 青蛙跳台阶问题]()
+- [x] [10-II. 青蛙跳台阶问题](./#10-ii-青蛙跳台阶问题)
+- [x] [24. 反转链表](./#24-反转链表)
+- [x] [64. 求1+2+…+n](.//#64-求12n)
 
 ## 03. 数组中重复的数字
 
@@ -292,6 +294,7 @@ class Solution:
 $$
 (a+b)~\text{mod}~n = \left[(a~\text{mod}~n) + (b~\text{mod}~n) \right]~\text{mod}~n
 $$
+- `0, 1, 1, 2, 3, 5 ...`
 
 ### 代码
 ```python
@@ -306,3 +309,132 @@ def Solution:
 ### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
+
+## 10-II. 青蛙跳台阶问题
+### 题目描述
+{{< notice note >}}
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+
+示例 1：  
+`输入：n = 2`  
+`输出：2`  
+
+示例 2：  
+`输入：n = 7`  
+`输出：21`  
+
+示例 3：
+`输入：n = 0`  
+`输出：1`  
+
+提示：
+
+`0 <= n <= 100`
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+### 思路
+
+- 思路同[斐波那契数列](./#10-i-斐波那契数列)
+- `1, 1, 2, 3, 5 ...`
+
+### 代码
+```python
+class Solution:
+    def numWays(self, n: int) -> int:
+        a, b = 0, 1
+        for _ in range(n+1):
+            a, b = b, (a+b) % 1000000007
+        return a
+```
+
+### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(1)$
+
+## 24. 反转链表
+### 题目描述
+{{< notice note >}}
+定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+
+示例:  
+`输入: 1->2->3->4->5->NULL`  
+`输出: 5->4->3->2->1->NULL`
+
+限制：  
+0 <= 节点个数 <= 5000
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+### 思路
+- 递归
+- `head.next.next = head`
+- `head.next = None`
+- 德摩根定律
+$$
+\neg (p~\wedge~q) \equiv (\neg p)~\vee~(\neg q)
+$$
+$$
+\neg (p~\vee~q) \equiv (\neg p)~\wedge~(\neg q)
+$$
+
+### 代码
+```python
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if not (head and head.next): return head
+        res = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return res
+```
+### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
+## 64. 求1+2+…+n
+### 题目描述
+{{< notice note>}}
+求 `1+2+...+n`，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+
+示例 1：    
+`输入: n = 3`  
+`输出: 6`
+
+示例 2：  
+`输入: n = 9`  
+`输出: 45`
+
+限制：
+
+`1 <= n <= 10000`
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/qiu-12n-lcof  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+### 思路
+- `and` 操作如果结果为真，返回最后一个表达式的值，
+- `or` 操作如果结果为真，返回第一个结果为真的表达式的值
+- `0 + 1 + 2 + ... + n`
+
+
+### 代码
+```python
+class Solution:
+    def sumNums(self, n: int) -> int:
+        return n and (n+self.sumNums(n-1))
+```
+
+### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
