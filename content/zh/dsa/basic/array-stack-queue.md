@@ -12,10 +12,12 @@ mathjax = true
 - [每日一题](./#每日一提)
   - [x] [989. 数组形式的整数加法](./#989-数组形式的整数加法)
 - [数组扩展](./#数组扩展)
-  - [x] [75. 颜色分类](./#75-颜色分类)
   - [ ] [28. 实现 strStr()]
-  - [ ] [380. 常数时间插入、删除和获取随机元素]
   - [x] [66. 加一](./#66-加一)
+  - [x] [75. 颜色分类](./#75-颜色分类)
+  - [x] [153. 寻找旋转排序数组中的最小值 I](#153-寻找旋转排序数组中的最小值-i)
+  - [x] [154. 寻找旋转排序数组中的最小值 II](#154-寻找旋转排序数组中的最小值-ii)
+  - [ ] [380. 常数时间插入、删除和获取随机元素]
   - [x] [821. 字符的最短距离](./#821-字符的最短距离)
 - [栈扩展](./#栈扩展)
   - [ ] [946. 验证栈序列]
@@ -104,6 +106,8 @@ mat.addToArrayForm(A, K)
 - 时间复杂度：$O(n)$, `n` 为 `K` 的位数
 - 空间复杂度：$O(1)$
 
+## 数组扩展
+
 ### 66. 加一
 
 #### 题目描述
@@ -153,76 +157,6 @@ mat.plusOne(digits)
 #### 复杂度
 - 时间复杂度：$O(N)$, N 为数组长度。
 - 空间复杂度：$O(1)$。
-
-### 821. 字符的最短距离
-
-#### 题目描述
-
-{{< notice note >}}
-给定一个字符串 S 和一个字符 C。返回一个代表字符串 S 中每个字符到字符串 S 中的字符 C 的最短距离的数组。
-
-示例 1:  
-输入: S = "loveleetcode", C = 'e'  
-输出: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]
-
-说明:  
-字符串 S 的长度范围为 [1, 10000]。  
-C 是一个单字符，且保证是字符串 S 里的字符。  
-S 和 C 中的所有字母均为小写字母。
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/shortest-distance-to-a-character  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-{{< /notice >}}
-
-#### 思路
-
-两次遍历：
-1. 左 $\to$ 右，创建 `res`  
-`res[i]` 记录 `i` 处距离左侧最近的字符 `C` 的距离。若左侧没有 `C`，则记录为 `len(S)`。比如：
-    - `S = "aabacbd", C = 'b'`
-    - `res = [7, 7, 0, 1, 2, 0, 1]`
-2. 右 $\to$ 左，更新 `res`  
-`if res[i] > res[i+1]+1: res[i] = res[i+1] + 1`
-    - `res = [7, 7, 0, 1, 2, 0, 1]`
-    - `res = [2, 1, 0, 1, 1, 0, 1]`
-
-#### 代码
-```python
-from typing import List
-class Solution:
-    def shortestToChar(self, S: str, C: str) -> List[int]:
-        n = len(S)
-        res = [n]*n
-        # first loop
-        i = 0
-        while S[i] != C[0]: i += 1
-        while i < n:
-            res[i] = 0 if S[i] == C[0] else res[i-1]+1
-            i += 1
-        # second loop
-        i -= 2
-        while i > -1:
-            if res[i+1]+1 < res[i]: res[i] = res[i+1]+1 
-            i -= 1
-        return res
-
-mat = Solution()
-S = "loveleetcode"
-C = 'e'
-
-S = "aaba"
-C = "b"
-mat.shortestToChar(S, C)
-```
-
-#### 复杂度
-- 时间复杂度：$O(N)$, N 为 S 的长度
-- 空间复杂度：$O(1)$ (暂时有些疑问)
-
-<hr />
-
-## 数组扩展
 
 ### 75. 颜色分类
 
@@ -298,6 +232,184 @@ print(nums)
 #### 复杂度
 - 时间复杂度：$O(N)$, $N$ 为数组长度
 - 空间复杂度：$O(1)$
+
+### 153. 寻找旋转排序数组中的最小值 I
+#### 题目描述
+{{< notice note >}}
+假设按照升序排序的数组在预先未知的某个点上进行了旋转。例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] 。请找出其中最小的元素。
+
+示例 1：  
+`输入：nums = [3,4,5,1,2]`
+`输出：1`
+
+示例 2：  
+`输入：nums = [4,5,6,7,0,1,2]`
+`输出：0`
+
+示例 3：  
+`输入：nums = [1]`
+`输出：1`
+
+提示：  
+- `1 <= nums.length <= 5000`
+- `-5000 <= nums[i] <= 5000`
+- `nums` 中的所有整数都是 唯一 的
+- `nums` 原来是一个升序排序的数组，但在预先未知的某个点上进行了旋转
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+#### 思路
+- 二分查找
+- `if nums[left] < nums[right]: return nums[left]` 数组一定有序
+- `mid = left + (right-left)//2`
+  - `if nums[left] <= nums[mid]: left = mid+1`
+  - `if nums[mid] < nums[left]: right = mid #不能丢弃可能解`
+
+#### 代码
+```python
+class Solution:
+    def findMin(self, nums):
+        left, right = 0, len(nums)-1
+        while left < right:
+            if nums[left] < nums[right]: return nums[left]
+            mid = left + (right-left)//2
+            if nums[left] <= nums[mid]:
+                left = mid+1
+            else:
+                right = mid
+        return nums[left]
+
+mat = Solution()
+nums = [3,4,5,1,2]
+nums = [4,5,6,7,0,1,2]
+# nums = [1]
+nums = [2,3,0,1]
+mat.findMin(nums)
+```
+#### 复杂度
+- 时间复杂度：$O(logN)$
+- 空间复杂度：$O(1)$
+
+### 154. 寻找旋转排序数组中的最小值 II
+#### 题目描述
+{{< notice note >}}
+假设按照升序排序的数组在预先未知的某个点上进行了旋转。
+( 例如，数组 `[0,1,2,4,5,6,7]` 可能变为 `[4,5,6,7,0,1,2]` )。
+请找出其中最小的元素。  
+注意数组中可能存在重复的元素。
+
+示例 1：  
+`输入: [1,3,5]`  
+`输出: 1`
+
+示例 2：  
+`输入: [2,2,2,0,1]`  
+`输出: 0`
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+#### 思路
+
+- 大致同上题
+- 当 `nums[left] == nums[mid]` 时，需要 `left += 1`，即 
+ `while left < mid and nums[left] == nums[mid]: left += 1`
+
+#### 代码
+```python
+from typing import List
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums)-1
+        while left < right:
+            mid = left + (right - left) // 2
+            while left < mid and nums[left] == nums[mid]: left += 1
+            if nums[left] < nums[right]: return nums[left]
+            if nums[left] <= nums[mid]:
+                left = mid+1
+            else:
+                right = mid
+        return nums[left]
+
+mat = Solution()
+nums = [2, 0, 2, 2]
+nums = [1, 2, 3]
+nums = [1]
+nums = [2, 0, 2, 2, 2, 2, 2]
+mat.findMin(nums)
+```
+#### 复杂度
+- 时间复杂度：$O(logN)$, 最差 $O(n)$
+- 空间复杂度：$O(1)$
+
+### 821. 字符的最短距离
+
+#### 题目描述
+
+{{< notice note >}}
+给定一个字符串 S 和一个字符 C。返回一个代表字符串 S 中每个字符到字符串 S 中的字符 C 的最短距离的数组。
+
+示例 1:  
+输入: S = "loveleetcode", C = 'e'  
+输出: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]
+
+说明:  
+字符串 S 的长度范围为 [1, 10000]。  
+C 是一个单字符，且保证是字符串 S 里的字符。  
+S 和 C 中的所有字母均为小写字母。
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/shortest-distance-to-a-character  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+#### 思路
+
+两次遍历：
+1. 左 $\to$ 右，创建 `res`  
+`res[i]` 记录 `i` 处距离左侧最近的字符 `C` 的距离。若左侧没有 `C`，则记录为 `len(S)`。比如：
+    - `S = "aabacbd", C = 'b'`
+    - `res = [7, 7, 0, 1, 2, 0, 1]`
+2. 右 $\to$ 左，更新 `res`  
+`if res[i] > res[i+1]+1: res[i] = res[i+1] + 1`
+    - `res = [7, 7, 0, 1, 2, 0, 1]`
+    - `res = [2, 1, 0, 1, 1, 0, 1]`
+
+#### 代码
+```python
+from typing import List
+class Solution:
+    def shortestToChar(self, S: str, C: str) -> List[int]:
+        n = len(S)
+        res = [n]*n
+        # first loop
+        i = 0
+        while S[i] != C[0]: i += 1
+        while i < n:
+            res[i] = 0 if S[i] == C[0] else res[i-1]+1
+            i += 1
+        # second loop
+        i -= 2
+        while i > -1:
+            if res[i+1]+1 < res[i]: res[i] = res[i+1]+1 
+            i -= 1
+        return res
+
+mat = Solution()
+S = "loveleetcode"
+C = 'e'
+
+S = "aaba"
+C = "b"
+mat.shortestToChar(S, C)
+```
+
+#### 复杂度
+- 时间复杂度：$O(N)$, N 为 S 的长度
+- 空间复杂度：$O(1)$ (暂时有些疑问)
 
 <hr />
 
