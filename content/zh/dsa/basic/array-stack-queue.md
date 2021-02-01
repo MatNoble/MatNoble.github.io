@@ -17,7 +17,7 @@ mathjax = true
   - [x] [75. 颜色分类](./#75-颜色分类)
   - [x] [153. 寻找旋转排序数组中的最小值 I](#153-寻找旋转排序数组中的最小值-i)
   - [x] [154. 寻找旋转排序数组中的最小值 II](#154-寻找旋转排序数组中的最小值-ii)
-  - [ ] [380. 常数时间插入、删除和获取随机元素]
+  - [x] [380. 常数时间插入、删除和获取随机元素](#380-常数时间插入删除和获取随机元素)
   - [x] [821. 字符的最短距离](./#821-字符的最短距离)
 - [栈扩展](./#栈扩展)
   - [ ] [946. 验证栈序列]
@@ -344,6 +344,66 @@ mat.findMin(nums)
 #### 复杂度
 - 时间复杂度：$O(logN)$, 最差 $O(n)$
 - 空间复杂度：$O(1)$
+
+### 380. 常数时间插入、删除和获取随机元素
+
+#### 题目描述
+{{< notice note >}}
+设计一个支持在平均 时间复杂度 `O(1)` 下，执行以下操作的数据结构。
+
+- `insert(val)`：当元素 `val` 不存在时，向集合中插入该项。
+- `remove(val)`：元素 `val` 存在时，从集合中移除该项。
+- `getRandom`：随机返回现有集合中的一项。每个元素应该有相同的概率被返回。
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/insert-delete-getrandom-o1  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+#### 代码
+```python
+class RandomizedSet:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.l = [] # 列表
+        self.d = {} # 字典
+
+
+    def insert(self, val: int) -> bool:
+        """
+        Inserts a value to the set. Returns true if the set did not already contain the specified element.
+        """
+        if val in self.d:
+            return False
+        else:
+            self.d[val] = len(self.l)
+            self.l.append(val)
+            return True
+
+
+    def remove(self, val: int) -> bool:
+        """
+        Removes a value from the set. Returns true if the set contained the specified element.
+        """
+        if val in self.d:
+            self.d[self.l[-1]] = self.d[val]
+            self.l[self.d.pop(val)] = self.l[-1]
+            self.l.pop()
+            return True
+        else:
+            return False
+
+
+
+    def getRandom(self) -> int:
+        """
+        Get a random element from the set.
+        """
+        return self.l[random.randint(0, len(self.l) - 1)]
+```
 
 ### 821. 字符的最短距离
 
