@@ -20,6 +20,7 @@ mathjax = true
   - [x] [154. 寻找旋转排序数组中的最小值 II](#154-寻找旋转排序数组中的最小值-ii)
   - [x] [380. 常数时间插入、删除和获取随机元素](#380-常数时间插入删除和获取随机元素)
   - [x] [821. 字符的最短距离](./#821-字符的最短距离)
+  - [x] [859. 亲密字符串](./#859-亲密字符串)
 - [栈扩展](./#栈扩展)
   - [ ] [946. 验证栈序列]
 - [队列扩展](./#队列扩展)  
@@ -475,6 +476,85 @@ class RandomizedSet:
         """
         return self.l[random.randint(0, len(self.l) - 1)]
 ```
+
+### 859. 亲密字符串
+
+#### 题目描述
+
+{{< notice note >}}
+给定两个由小写字母构成的字符串 A 和 B ，只要我们可以通过交换 A 中的两个字母得到与 B 相等的结果，就返回 true ；否则返回 false 。
+
+交换字母的定义是取两个下标 i 和 j （下标从 0 开始），只要 i!=j 就交换 A[i] 和 A[j] 处的字符。例如，在 "abcd" 中交换下标 0 和下标 2 的元素可以生成 "cbad" 。
+
+示例 1：  
+输入： `A = "ab", B = "ba"`  
+输出： `true`  
+解释： `你可以交换 A[0] = 'a' 和 A[1] = 'b' 生成 "ba"，此时 A 和 B 相等。`
+
+示例 2：  
+输入： `A = "ab", B = "ab"`  
+输出： `false`  
+解释： `你只能交换 A[0] = 'a' 和 A[1] = 'b' 生成 "ba"，此时 A 和 B 不相等。`
+
+示例 3:  
+输入： `A = "aa", B = "aa"`  
+输出： `true`  
+解释： `你可以交换 A[0] = 'a' 和 A[1] = 'a' 生成 "aa"，此时 A 和 B 相等。`
+
+示例 4：  
+输入： `A = "aaaaaaabc", B = "aaaaaaacb"`  
+输出： `true`
+
+示例 5：  
+输入： `A = "", B = "aa"`  
+输出： `false`
+
+提示：  
+- 0 <= A.length <= 20000
+- 0 <= B.length <= 20000
+- A 和 B 仅由小写字母构成。
+
+来源：力扣（LeetCode）  
+链接：https://leetcode-cn.com/problems/buddy-strings  
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+{{< /notice >}}
+
+#### 思路
+
+- 判定 `True` 条件
+- `A == B`，`A` 或 `B` 中有重复字母时为 `True`, 反之 `False`
+- `A != B`，只有两处索引是错位时才为 `True`，反之 `False`
+
+#### 代码
+```python
+class Solution:
+    def buddyStrings(self, A: str, B: str) -> bool:
+        n, m = len(A), len(B)
+        if n != m: return False
+        if A == B:
+            C = set()
+            for a in A:
+                if a in C: return True
+                C.add(a)
+            return False
+        else:
+            C = []
+            for i in range(n):
+                if A[i] != B[i]:
+                    C.append([A[i], B[i]])
+                if len(C) >=3: return False
+            return len(C) == 2 and C[0] == C[-1][::-1]
+
+mat = Solution()
+A = 'acb'
+B = 'abc'
+A = 'aa'
+B = 'aa'
+mat.buddyStrings(A, B)
+```
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$(最坏)
 
 ### 821. 字符的最短距离
 
