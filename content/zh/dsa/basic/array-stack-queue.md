@@ -23,6 +23,7 @@ mathjax = true
   - [x] [859. 亲密字符串](./#859-亲密字符串)
 - [栈扩展](./#栈扩展)
   - [x] [150. 逆波兰表达式求值](./#150-逆波兰表达式求值)
+  - [x] [394. 字符串解码](./#394-字符串解码)
   - [ ] [946. 验证栈序列]
 - [队列扩展](./#队列扩展)  
   - [ ] [155. 最小栈]
@@ -30,6 +31,7 @@ mathjax = true
 ## 每日一题
 
 ### 821. 字符的最短距离
+https://leetcode-cn.com/problems/shortest-distance-to-a-character  
 #### 题目描述
 
 {{< notice note >}}
@@ -43,10 +45,6 @@ mathjax = true
 字符串 S 的长度范围为 [1, 10000]。  
 C 是一个单字符，且保证是字符串 S 里的字符。  
 S 和 C 中的所有字母均为小写字母。
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/shortest-distance-to-a-character  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 
 #### 思路
@@ -100,7 +98,8 @@ $n$ 为 `S` 的长度
 - 空间复杂度：$O(n)$
 
 ### 989. 数组形式的整数加法
-### 题目描述
+https://leetcode-cn.com/problems/add-to-array-form-of-integer  
+#### 题目描述
 {{< notice note >}}
 对于非负整数 `X` 而言，`X` 的数组形式是每位数字按从左到右的顺序形成的数组。例如，如果 `X = 1231`，那么其数组形式为 `[1,2,3,1]`。
 
@@ -133,14 +132,9 @@ $n$ 为 `S` 的长度
 - `0 <= A[i] <= 9`
 - `0 <= K <= 10000`
 - `如果 A.length > 1，那么 A[0] != 0`
-
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/add-to-array-form-of-integer  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 
-### 思路
+#### 思路
 
 - 取个位数：`K % 10`
 - 去掉个位数：`K \\ 10`
@@ -149,7 +143,7 @@ $n$ 为 `S` 的长度
   - `len(A) >= len(K)`
   - `len(A) <  len(K)`
 
-### 代码
+#### 代码
 <details>
  <summary> Python </summary>
 
@@ -179,13 +173,13 @@ mat.addToArrayForm(A, K)
 ```
 </details>
 
-### 复杂度
+#### 复杂度
 `n = len(A)`, `m` 为 `K` 的位数
 - 时间复杂度：$O(n+\max(0, m-n))$
 - 空间复杂度：$O(\max(1, m-n))$
 
 ## 数组扩展
-
+https://leetcode-cn.com/problems/spiral-matrix-ii  
 ### 59. 螺旋矩阵 II
 #### 题目描述
 {{< notice note >}}
@@ -202,10 +196,6 @@ mat.addToArrayForm(A, K)
 
 提示：  
 `1 <= n <= 20`
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/spiral-matrix-ii  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 
 #### 思路
@@ -260,7 +250,7 @@ mat.generateMatrix(n)
 - 空间复杂度：$O(n^2)$
 
 ### 66. 加一
-
+https://leetcode-cn.com/problems/plus-one  
 #### 题目描述
 {{< notice note >}}
 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。  最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。  你可以假设除了整数 0 之外，这个整数不会以零开头。
@@ -274,10 +264,6 @@ mat.generateMatrix(n)
 输入: [4,3,2,1]  
 输出: [4,3,2,2]  
 解释: 输入数组表示数字 4321。
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/plus-one  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 
 #### 思路  
@@ -314,7 +300,7 @@ mat.plusOne(digits)
 - 空间复杂度：$O(1)$。
 
 ### 75. 颜色分类
-
+https://leetcode-cn.com/problems/sort-colors  
 #### 题目描述
 
 {{< notice note >}}
@@ -330,10 +316,6 @@ mat.plusOne(digits)
 进阶：  
 一个直观的解决方案是使用计数排序的两趟扫描算法。  
 首先，迭代计算出0、1 和 2 元素的个数，然后按照0、1、2的排序，重写当前数组。你能想出一个仅使用常数空间的一趟扫描算法吗？
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/sort-colors  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 
 #### 思路
@@ -457,6 +439,7 @@ mat.findMin(nums)
 - 空间复杂度：$O(1)$
 
 ### 154. 寻找旋转排序数组中的最小值 II
+https://leetcode-cn.com/problems/insert-delete-getrandom-o1  
 #### 题目描述
 {{< notice note >}}
 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
@@ -523,10 +506,6 @@ mat.findMin(nums)
 - `insert(val)`：当元素 `val` 不存在时，向集合中插入该项。
 - `remove(val)`：元素 `val` 存在时，从集合中移除该项。
 - `getRandom`：随机返回现有集合中的一项。每个元素应该有相同的概率被返回。
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/insert-delete-getrandom-o1  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 
 #### 代码
@@ -579,7 +558,7 @@ class RandomizedSet:
 </details>
 
 ### 859. 亲密字符串
-
+https://leetcode-cn.com/problems/buddy-strings  
 #### 题目描述
 
 {{< notice note >}}
@@ -614,10 +593,6 @@ class RandomizedSet:
 - 0 <= A.length <= 20000
 - 0 <= B.length <= 20000
 - A 和 B 仅由小写字母构成。
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/buddy-strings  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 
 #### 思路
@@ -667,6 +642,7 @@ mat.buddyStrings(A, B)
 ## 栈扩展
 
 ### 150. 逆波兰表达式求值
+https://leetcode-cn.com/problems/evaluate-reverse-polish-notation  
 #### 题目描述
 {{< notice note >}}
 根据 逆波兰表示法，求表达式的值。有效的运算符包括 `+, -, *, /` 。每个运算对象可以是整数，也可以是另一个逆波兰表达式。
@@ -684,10 +660,6 @@ mat.buddyStrings(A, B)
 输入: `["4", "13", "5", "/", "+"]`  
 输出: `6`  
 解释: 该算式转化为常见的中缀算术表达式为：`(4 + (13 / 5)) = 6`
-
-来源：力扣（LeetCode）  
-链接：https://leetcode-cn.com/problems/evaluate-reverse-polish-notation  
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 {{< /notice >}}
 #### 思路
 - 使用数据结构 -- 栈 stack (先进后出)
@@ -735,6 +707,72 @@ mat.evalRPN(tokens)
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
+
+### 394. 字符串解码
+
+#### 题目描述
+https://leetcode-cn.com/problems/decode-string/  
+{{< notice note >}}
+给定一个经过编码的字符串，返回它解码后的字符串。
+
+编码规则为: `k[encoded_string]`，表示其中方括号内部的 `encoded_string` 正好重复 k 次。注意 k 保证为正整数。
+
+你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。
+
+此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。
+
+示例 1：  
+输入：s = "3[a]2[bc]"  
+输出："aaabcbc"
+
+示例 2：  
+输入：s = "3[a2[c]]"  
+输出："accaccacc"
+
+示例 3：  
+输入：s = "2[abc]3[cd]ef"  
+输出："abcabccdcdcdef"
+
+示例 4：  
+输入：s = "abc3[cd]xyz"  
+输出："abccdcdcdxyz"
+{{< /notice >}}
+#### 思路
+
+- 参考自：  
+https://leetcode-cn.com/problems/decode-string/solution/decode-string-fu-zhu-zhan-fa-di-gui-fa-by-jyd/
+- 利用堆栈“先进后出”的特点
+- 栈内存储 `[multi, res]`: 
+  - multi: 正在处理的字符串的重复次数
+  - 之前解码的字符串
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack, res, multi = [], '', 0
+        for val in s:
+            if val == '[':
+                stack.append([multi, res])
+                res, multi = '', 0
+            elif val == ']':
+                cur_multi, last_res = stack.pop()
+                res = last_res + cur_multi * res
+            elif '0' <= val <= '9':
+                multi = multi * 10 + int(val)
+            else:
+                res += val
+        return res
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$ # 最坏情况
+
 
 <hr />
 
