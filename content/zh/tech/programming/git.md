@@ -8,7 +8,7 @@ toc = true
 aliases = ["/posts/git"]
 +++
 
-{{< imgcap src="https://imgkr.cn-bj.ufileos.com/e13f1349-c714-4eee-ba1d-a0f12bce7661.png" title="Git && GitHub" >}}
+{{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210204185140.png" title="Git && GitHub" >}}
 
 ## 安装及配置
 
