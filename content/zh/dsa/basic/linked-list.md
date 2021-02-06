@@ -3,7 +3,7 @@ title = "链表"
 date = "2021-02-06T00:19:30+00:00"
 description = "91 天学算法"
 tags = ["LeetCode题解","编程刷题"]
-keywords = ["leetcode","数据结构","python","链表"，"数组","栈","队列","MatNoble"]
+keywords = ["leetcode","数据结构","python","链表","数组","栈","队列","MatNoble"]
 toc = false
 mathjax = true
 +++
