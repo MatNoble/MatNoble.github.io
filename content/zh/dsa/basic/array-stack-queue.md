@@ -28,7 +28,7 @@ mathjax = true
   - [x] [859. 亲密字符串](./#859-亲密字符串)
 - [栈扩展](./#栈扩展)
   - [x] [150. 逆波兰表达式求值](./#150-逆波兰表达式求值)
-  - [ ] [946. 验证栈序列]
+  - [ ] [946. 验证栈序列](./#946-验证栈序列)
 - [队列扩展](./#队列扩展)  
   - [ ] [155. 最小栈]
 
@@ -995,9 +995,71 @@ mat.evalRPN(tokens)
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
 
-<hr />
+### 946. 验证栈序列
+https://leetcode-cn.com/problems/validate-stack-sequences
+#### 题目描述
+{{< notice note >}}
+给定 `pushed` 和 `popped` 两个序列，每个序列中的 值都不重复，只有当它们可能是在最初空栈上进行的推入 `push` 和弹出 `pop` 操作序列的结果时，返回 `true`；否则，返回 `false`。
 
-## 队列扩展
+示例 1：  
+输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]  
+输出：true  
+解释：我们可以按以下顺序执行：  
+`push(1), push(2), push(3), push(4), pop() -> 4, push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1`
+
+示例 2：  
+输入：pushed = [1,2,3,4,5], popped = [4,3,5,1,2]  
+输出：false  
+解释：1 不能在 2 之前弹出。  
+
+提示：
+- 0 <= pushed.length == popped.length <= 1000
+- 0 <= pushed[i], popped[i] < 1000
+- pushed 是 popped 的排列。
+{{< /notice >}}
+#### 思路
+- 遍历数组 `pushed`，并将值压入`栈 stack`
+- 注意 `popped` 是出栈的顺序，当遍历值与 `popped[j]` 相同时，`stack.pop()` 
+- 最后，判断 `stack` 是否为空
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+from typing import List
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        n = len(pushed)
+        stack = []
+        i = j = 0
+        while i < n:
+            while i < n and pushed[i] != popped[j]: 
+                stack.append(pushed[i])
+                i += 1
+            i += 1
+            j += 1
+            while stack and stack[-1] == popped[j]:
+                stack.pop()
+                j += 1
+            if j < n and popped[j] in stack: return False # 提前结束
+        return True if len(stack)==0 else False
+
+mat = Solution()
+pushed = [1,2,3,4,5]
+popped = [4,5,3,2,1]
+
+pushed = [1,2,3,4,5]
+popped = [4,3,5,1,2]
+
+pushed = [1,2,3,4,5,6,7]
+popped = [1,2,5,3,6,7,4]
+mat.validateStackSequences(pushed, popped)
+```
+</details>
+
+#### 复杂度
+- 时间复杂度： $O(n)$ # 最差
+- 空间复杂度： $O(n)$
 
 <!-- 模板
 #### 题目描述
