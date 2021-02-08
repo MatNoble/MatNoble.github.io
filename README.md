@@ -1,4 +1,4 @@
-## <a title="matnoble.me" href="https://matnoble.me"><img align="center" width="75" height="75" src="https://raw.githubusercontent.com/MatNoble/matnoble.me/master/static/icons/android-chrome-512x512.png"></a> MatNoble
+## <a title="matnoble.me" href="https://matnoble.me"><img align="center" width="75" height="75" src="https://raw.githubusercontent.com/MatNoble/matnoble.github.io/master/static/icons/android-chrome-512x512.png"></a> MatNoble
 
 [![Home](https://img.shields.io/badge/Home-MatNoble-blue)](https://matnoble.me)
 [![Generator](https://img.shields.io/badge/Generator-Hugo-ff4088?&logo=hugo)](https://gohugo.io/)
