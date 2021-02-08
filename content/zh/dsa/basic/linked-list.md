@@ -12,6 +12,18 @@ mathjax = true
 - [每日一题](./#每日一题)
   - [x] [61. 旋转链表](./#61-旋转链表)
   - [x] [24. 两两交换链表中的节点](./#24-两两交换链表中的节点)
+- [x] [扩展](./#扩展)
+  - [x] [21. 合并两个有序链表](./#21-合并两个有序链表)
+  - [x] [83. 删除排序链表中的重复元素](./#83-删除排序链表中的重复元素)
+  - [ ] [86. 分隔链表]()
+  - [ ] [92. 反转链表 II]()
+  - [ ] [138. 复制带随机指针的链表]()
+  - [ ] [141. 环形链表]()
+  - [ ] [142. 环形链表 II]()
+  - [ ] [143. 重排链表]()
+  - [ ] [148. 排序链表]()
+  - [ ] [206. 反转链表]()
+  - [ ] [234. 回文链表]()
 
 ## 每日一题
 
@@ -131,3 +143,123 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
+
+## 扩展
+
+### 21. 合并两个有序链表
+https://leetcode-cn.com/problems/merge-two-sorted-lists/
+
+#### 题目描述
+{{< notice note >}}
+将两个升序链表合并为一个新的 **升序** 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+
+示例：
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210208205015.png"/>
+**输入**：l1 = [1,2,4], l2 = [1,3,4]  
+**输出**：[1,1,2,3,4,4]
+
+提示：  
+- 两个链表的节点数目范围是 [0, 50]
+- -100 <= Node.val <= 100
+- l1 和 l2 均按 **非递减顺序** 排列
+{{< /notice >}}
+#### 思路
+遍历即可
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        res = ListNode()
+        cur = res
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        cur.next = l1 if l1 else l2
+        return res.next
+```
+</details>
+
+#### 复杂度
+$m, n$ 分别是 l1 和 l2 的长度
+- 时间复杂度：$O(min(m,n))$
+- 空间复杂度：$O(1)$
+
+### 83. 删除排序链表中的重复元素
+https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
+#### 题目描述
+{{< notice note >}}
+给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。
+
+**示例 1:**  
+**输入**: 1->1->2  
+**输出**: 1->2
+
+**示例 2:**  
+**输入**: 1->1->2->3->3  
+**输出**: 1->2->3
+{{< /notice >}}
+#### 思路
+创建**哑节点** `pre` 跟在 `cur` 后面，遍历数组。并查询 `cur.val` 是否在创建的 `hashSet` 里
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        hashSet = set()
+        pre = ListNode()
+        pre.next = head
+        cur = head
+        while cur:
+            if cur.val in hashSet:
+                pre.next = cur.next
+            else:
+                pre = cur
+                hashSet.add(cur.val)
+            cur = cur.next
+        return head
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
+<!--
+#### 题目描述
+{{< notice note >}}
+
+{{< /notice >}}
+#### 思路
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：
+- 空间复杂度：
+-->
