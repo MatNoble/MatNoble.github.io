@@ -1,6 +1,6 @@
 # .github/workflows/build.yml
 
-name: build
+name: Build and Deploy
 
 on:
   push:
@@ -8,20 +8,27 @@ on:
     - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 'Checkout codes'
-      uses: actions/checkout@v2
+    - name: 'Checkout 🛎️'
+      uses: actions/checkout@v2.3.1
       with:
         submodules: true
+
+    - name: 'Install and Build 🔧'
+      run: |
+          npm install
+          npm run build
     
     - name: 'Building...'
-      uses: ./.github/actions/hugo-deploy
-      env:
-        DEPLOY_REPO: MatNoble/matnoble.github.io
-        DEPLOY_BRANCH: build
-        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-        # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-        TZ: Asia/Shanghai
+      uses: JamesIves/github-pages-deploy-action@4.0.0
+      with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
+	  clean: true
+          clean-exclude: |
+            special-file.txt
+            some/*.txt
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
