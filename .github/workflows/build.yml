@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: 'Building...'
-      uses: ./.github/actions
+      uses: .github/actions
       env:
         DEPLOY_REPO: MatNoble/matnoble.github.io
         DEPLOY_BRANCH: build
