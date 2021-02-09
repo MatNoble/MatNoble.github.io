@@ -11,9 +11,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:	
+    steps:
+    - name: 'Checkout codes'
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+    
     - name: 'Building...'
-      uses: reuixiy/hugo-deploy@v1
+      uses: ./.github/actions/hugo-deploy
       env:
         DEPLOY_REPO: MatNoble/matnoble.github.io
         DEPLOY_BRANCH: build
