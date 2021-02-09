@@ -1,6 +1,4 @@
-FROM immawanderer/archlinux:latest
-
-RUN pacman -Sr pacman
+FROM archlinux
 
 RUN pacman -Syu --noconfirm hugo git openssh
 
