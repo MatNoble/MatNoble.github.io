@@ -1,22 +1,28 @@
-# .github/workflows/build.yml
-
-name: build
+name: hugo-latest-cd
 
 on:
   push:
     branches:
-    - master
+      - master
+
+env:
+  TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #  HUGO_ARGS: '--minify'
+  DEPLOY_REPO: MatNoble/matnoble.github.io
+  DEPLOY_BRANCH: build
+  DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+  # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  TZ: Asia/Shanghai
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Build & Deploy with Latest Hugo
-      uses: victoriadrake/hugo-latest-cd@v1.2
-      env:
-        DEPLOY_REPO: MatNoble/matnoble.github.io
-        DEPLOY_BRANCH: build
-        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-        # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-        TZ: Asia/Shanghai
+      - name: 🛎 Check out master
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: 🚀 Build and deploy
+        uses: victoriadrake/hugo-latest-cd@master
