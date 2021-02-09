@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MatNoble</title>
+        <link>https://matnoble.me/en/</link>
+        <description>Blog of reuixiy in English.</description>
+        <generator>Hugo 0.80.0 https://gohugo.io/</generator>
+        
+            <language>en-US</language>
+        
+        
+            <managingEditor>hustmatnoble@gmail.com (数学小兵儿)</managingEditor>
+        
+        
+            <webMaster>hustmatnoble@gmail.com (数学小兵儿)</webMaster>
+        
+        
+            <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+        
+        <lastBuildDate>Tue, 09 Feb 2021 23:00:56 &#43;0800</lastBuildDate>
+        
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://matnoble.me/en/rss.xml" />
+        
+        
+    </channel>
+</rss>
