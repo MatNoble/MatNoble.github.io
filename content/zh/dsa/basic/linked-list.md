@@ -12,6 +12,7 @@ mathjax = true
 - [每日一题](./#每日一题)
   - [x] [61. 旋转链表](./#61-旋转链表)
   - [x] [24. 两两交换链表中的节点](./#24-两两交换链表中的节点)
+  - [x] [109. 有序链表转换二叉搜索树](./#109-有序链表转换二叉搜索树)
 - [x] [扩展](./#扩展)
   - [x] [21. 合并两个有序链表](./#21-合并两个有序链表)
   - [x] [83. 删除排序链表中的重复元素](./#83-删除排序链表中的重复元素)
@@ -143,6 +144,74 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
+
+### 109. 有序链表转换二叉搜索树
+https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/
+#### 题目描述
+{{< notice note >}}
+给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。
+
+本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。
+
+**示例:**  
+给定的有序链表： [-10, -3, 0, 5, 9],  
+一个可能的答案是：[0, -3, 9, -10, null, 5], 它可以表示下面这个高度平衡二叉搜索树：
+```
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+``` 
+{{< /notice >}}
+#### 思路
+链表顺序即为搜索二叉数中序遍历的输出。运用递归中序遍历构建搜索二叉数。
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def sortedListToBST(self, head: ListNode) -> TreeNode:
+        if not head: return
+        # 使用self声明全局变量h, 记住head的位置
+        self.h = head
+        # 获得链表的长度
+        length = 0
+        while head:
+            length += 1
+            head = head.next
+        
+        # 通过递归，根据中序遍历创建二叉树，左父右；
+        # 递归传入当前区间开始、结束索引
+        def buildBST(start, end):
+            if start > end: return None
+            mid = (start + end) // 2
+            # 左区间递归创建左子树
+            left = buildBST(start, mid - 1)
+            # 创建父节点
+            root = TreeNode(self.h.val)
+            # 创建一个父节点便更新h的位置
+            self.h = self.h.next
+            # 连接左子树和父节点
+            root.left = left
+            # 右区间创建右子树
+            root.right = buildBST(mid + 1, end)
+            return root
+        
+        return buildBST(0, length - 1)
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(log N)$
 
 ## 扩展
 
