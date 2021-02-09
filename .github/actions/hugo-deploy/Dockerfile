@@ -1,7 +1,7 @@
 # https://github.com/jakejarvis/hugo-docker
-FROM ghcr.io/jakejarvis/hugo-extended:0.80.0
+FROM FROM immawanderer/archlinux:latest
 
-ENTRYPOINT ["hugo"]
+RUN pacman -Syu --noconfirm hugo git openssh
 
 COPY entrypoint.sh /entrypoint.sh
 
