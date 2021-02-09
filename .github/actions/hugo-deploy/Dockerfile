@@ -1,6 +1,8 @@
 FROM immawanderer/archlinux:latest
 
-RUN pacman -S --noconfirm hugo git openssh
+RUN pacman -Sr pacman
+
+RUN pacman -Syu --noconfirm hugo git openssh
 
 COPY entrypoint.sh /entrypoint.sh
 
