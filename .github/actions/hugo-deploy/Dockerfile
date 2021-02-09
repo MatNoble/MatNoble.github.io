@@ -1,5 +1,4 @@
-# https://github.com/jakejarvis/hugo-docker
-FROM FROM immawanderer/archlinux:latest
+FROM immawanderer/archlinux:latest
 
 RUN pacman -Syu --noconfirm hugo git openssh
 
