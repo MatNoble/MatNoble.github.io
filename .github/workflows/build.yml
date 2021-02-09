@@ -18,7 +18,7 @@ jobs:
         submodules: true
 	
     - name: 'Building...'
-      uses: ./.github/actions/hugo-deploy
+      uses: ../.github/actions/hugo-deploy
       env:
         DEPLOY_REPO: MatNoble/matnoble.github.io
         DEPLOY_BRANCH: build
