@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 'Building...'
-      uses: reuixiy/hugo-deploy@v1 #./.github/actions/hugo-deploy
+    - name: Build & Deploy with Latest Hugo
+      uses: victoriadrake/hugo-latest-cd@v1.2
       env:
         DEPLOY_REPO: MatNoble/matnoble.github.io
         DEPLOY_BRANCH: build
