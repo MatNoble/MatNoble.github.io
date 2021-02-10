@@ -13,6 +13,7 @@ mathjax = true
   - [x] [61. 旋转链表](./#61-旋转链表)
   - [x] [24. 两两交换链表中的节点](./#24-两两交换链表中的节点)
   - [x] [109. 有序链表转换二叉搜索树](./#109-有序链表转换二叉搜索树)
+  - [x] [160. 相交链表](./#160-相交链表)
 - [x] [扩展](./#扩展)
   - [x] [21. 合并两个有序链表](./#21-合并两个有序链表)
   - [x] [83. 删除排序链表中的重复元素](./#83-删除排序链表中的重复元素)
@@ -212,6 +213,49 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(log N)$
+
+### 160. 相交链表
+#### 题目描述
+{{< notice note >}}
+编写一个程序，找到两个单链表相交的起始节点。
+
+**示例 1：** 
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210210114054.png"/>
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3  
+输出：Reference of the node with value = 8
+
+**示例 2：** 
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210210114123.png"/>
+输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2  
+输出：null
+{{< /notice >}}
+#### 思路
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/linked_list_intersection.png"/>
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        i, j = headA, headB
+        while True:
+            if i == j: return i
+            i = i.next if i else headB
+            j = j.next if j else headA
+```
+</details>
+
+#### 复杂度
+m, n 分别是两链表的长度
+- 时间复杂度：$O(m+n)$
+- 空间复杂度：$O(1)$
 
 ## 扩展
 
