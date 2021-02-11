@@ -14,6 +14,7 @@ mathjax = true
   - [x] [24. 两两交换链表中的节点](./#24-两两交换链表中的节点)
   - [x] [109. 有序链表转换二叉搜索树](./#109-有序链表转换二叉搜索树)
   - [x] [160. 相交链表](./#160-相交链表)
+  - [ ] []()
 - [x] [扩展](./#扩展)
   - [x] [21. 合并两个有序链表](./#21-合并两个有序链表)
   - [x] [83. 删除排序链表中的重复元素](./#83-删除排序链表中的重复元素)
@@ -229,8 +230,10 @@ class Solution:
 输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2  
 输出：null
 {{< /notice >}}
+
 #### 思路
 <img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/linked_list_intersection.png"/>
+
 #### 代码
 <details>
  <summary> Python </summary>
@@ -255,6 +258,51 @@ class Solution:
 #### 复杂度
 m, n 分别是两链表的长度
 - 时间复杂度：$O(m+n)$
+- 空间复杂度：$O(1)$
+
+#### 题目描述
+{{< notice note >}}
+
+{{< /notice >}}
+#### 思路
+利用**快慢指针**: `slow` 每次走一步，`fast` 每次走两步。
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210211113427.png" width=500/>
+
+$$
+K + M + L + M = 2(K + M) \Longrightarrow K = L
+$$
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        slow, fast = head, head
+        while True:
+            if fast is None or fast.next is None: 
+                return None
+            slow, fast = slow.next, fast.next.next
+            if slow == fast: 
+                break
+        finder = head
+        while True:
+            if finder == slow:
+                return finder
+            else:
+                slow, finder = slow.next, finder.next
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
 
 ## 扩展
