@@ -1,8 +1,8 @@
 +++
-title = "数"
+title = "树"
 date = "2021-02-12T00:19:30+00:00"
 description = "91 天学算法"
-tags = ["LeetCode题解","编程刷题"]
+tags = ["LeetCode题解","编程刷题","树"]
 keywords = ["leetcode","数据结构","python","链表","数组","栈","队列","MatNoble"]
 toc = false
 mathjax = true
