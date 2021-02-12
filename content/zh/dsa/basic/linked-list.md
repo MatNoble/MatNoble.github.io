@@ -15,7 +15,8 @@ mathjax = true
   - [x] [109. 有序链表转换二叉搜索树](./#109-有序链表转换二叉搜索树)
   - [x] [160. 相交链表](./#160-相交链表)
   - [x] [142. 环形链表 II](./#142-环形链表-ii)
-- [x] [扩展](./#扩展)
+  - [x] [146. LRU 缓存机制(设计)](./#146-lru-缓存机制)
+- [扩展](./#扩展)
   - [x] [21. 合并两个有序链表](./#21-合并两个有序链表)
   - [x] [83. 删除排序链表中的重复元素](./#83-删除排序链表中的重复元素)
   - [ ] [86. 分隔链表]()
@@ -316,6 +317,105 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
+
+### 146. LRU 缓存机制
+https://leetcode-cn.com/problems/lru-cache/
+#### 题目描述
+{{< notice note >}}
+运用你所掌握的数据结构，设计和实现一个 「LRU (最近最少使用) 缓存机制」 。
+实现 `LRUCache` 类：
+
+- `LRUCache(int capacity)` 以正整数作为容量 `capacity` 初始化 LRU 缓存
+- `int get(int key)` 如果关键字 `key` 存在于缓存中，则返回关键字的值，否则返回 `-1` 。
+- `void put(int key, int value)` 如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字-值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。
+ 
+
+**进阶**：你是否可以在 `O(1)` 时间复杂度内完成这两种操作？
+{{< /notice >}}
+#### 思路
+- 需求:
+  - 存储 `key` 和 `value`
+  - 顺序存储，或者增加另一个标记，用来记录「访问先后」
+  - $O(1)$ 时间
+
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210212171525.png"/>
+
+采用 `双向链表` $+$ `哈希表`：
+- **双向链表**： `node(key, val)`
+- **哈希表**：`{key:node}`
+- 实现快速将某节点 `node` 移至链表结尾
+- 实现快速删除头节点 
+
+*[参考 Liye](https://leetcode-cn.com/problems/lru-cache/solution/shu-ju-jie-gou-fen-xi-python-ha-xi-shuang-xiang-li/)*
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+class ListNode:
+    def __init__(self, key=None, value=None):
+        self.key = key
+        self.val = value
+        self.prev = None
+        self.next = None
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.hashMap = {}
+        self.head = ListNode()
+        self.tail = ListNode()
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    
+    def move_node_to_tail(self, key):
+        node = self.hashMap[key]
+        # 断
+        # prev  -- x -- > node <-- x -- next
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        # 连
+        # prev <-- node --> tail
+        node.next = self.tail
+        node.prev = self.tail.prev
+        # prev --> node <-- tail
+        node.prev.next = node
+        self.tail.prev = node
+
+
+    def get(self, key: int) -> int:
+        if key in self.hashMap:
+            self.move_node_to_tail(key)
+            return self.hashMap[key].val
+        return -1
+
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.hashMap:
+            self.hashMap[key].val = value
+            self.move_node_to_tail(key)
+        else:
+            if len(self.hashMap) == self.capacity:
+                self.hashMap.pop(self.head.next.key)
+                self.head.next = self.head.next.next
+                self.head.next.prev = self.head
+            new = ListNode(key, value)
+            self.hashMap[key] = new
+            # prev <-- new --> tail
+            new.prev = self.tail.prev
+            new.next = self.tail
+            # prev --> new <-- tail
+            new.prev.next = new
+            self.tail.prev = new
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(1)$
+- 空间复杂度：$O(capacity)$
 
 ## 扩展
 
