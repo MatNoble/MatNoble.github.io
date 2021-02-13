@@ -11,6 +11,7 @@ mathjax = true
 # 目录
 - [每日一题](./#每日一题)
   - [x] [104. 二叉树的最大深度](./#104-二叉树的最大深度)
+  - [x] [100. 相同的树](./#100-相同的树)
 - [扩展](./#扩展)
 
 ## 每日一题
@@ -57,6 +58,57 @@ class Solution:
         right = self.maxDepth(root.right)
         res = max(left, right) + 1
         return res
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
+### 100. 相同的树
+https://leetcode-cn.com/problems/same-tree/
+#### 题目描述
+{{< notice note >}}
+给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。
+
+如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+
+**示例 1：** 
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210213165916.png"/>
+**输入**: p = [1,2,3], q = [1,2,3]  
+**输出** true
+
+**示例 2：**
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210213165948.png"/>
+**输入**: p = [1,2], q = [1,null,2]  
+**输出**: false
+{{< /notice >}}
+
+#### 思路
+- 运用递归
+- 关注根节点 `root`
+- 然后向下递归 `left` 和 `right`
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if not (p or q): 
+            return True
+        elif not (p and q): 
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 ```
 </details>
 
