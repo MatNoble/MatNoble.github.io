@@ -12,6 +12,8 @@ mathjax = true
 - [每日一题](./#每日一题)
   - [x] [104. 二叉树的最大深度](./#104-二叉树的最大深度)
   - [x] [100. 相同的树](./#100-相同的树)
+  - [x] [129. 求根到叶子节点数字之和](./#129-求根到叶子节点数字之和)
+  - [ ] [ ]()
 - [扩展](./#扩展)
 
 ## 每日一题
@@ -115,6 +117,108 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$
+
+
+### 129. 求根到叶子节点数字之和
+https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/
+#### 题目描述
+{{< notice note >}}
+给定一个二叉树，它的每个结点都存放一个 `0-9` 的数字，每条从根到叶子节点的路径都代表一个数字。
+
+例如，从根到叶子节点路径 `1->2->3` 代表数字 `123`。
+
+计算从根到叶子节点生成的所有数字之和。
+
+**说明**: 叶子节点是指没有子节点的节点。
+
+**示例 1:**  
+输入: `[1,2,3]`
+```
+    1
+   / \
+  2   3
+```
+**输出:** `25`  
+**解释:**  
+从根到叶子节点路径 `1->2` 代表数字 `12`.  
+从根到叶子节点路径 `1->3` 代表数字 `13`.  
+因此，数字总和 = `12 + 13 = 25`.
+{{< /notice >}}
+#### 思路
+- DFS 深度优先搜索
+  - 递归
+  - 遇到 **叶节点**，加入 `self.res`
+  - 否则，进行数学进位运算
+- BFS 深度优先搜索
+  - 使用双端队列，`queue.popleft()` 时间复杂度是 $O(1)$
+  - 遇到 **叶节点**，加入 `res`
+  - 否则，进行数学进位运算
+#### 代码
+<details>
+ <summary> Python DFS</summary>
+
+```python
+class Solution:
+    def sumNumbers(self, root: TreeNode) -> int:
+        ## DFS
+        def dfs(root, sum_):
+            if not (root.left or root.right):
+                self.res += sum_
+                return
+            if root.left:
+                dfs(root.left, sum_*10 + root.left.val)
+            if root.right:
+                dfs(root.right, sum_*10 + root.right.val)
+        if not root: return 0
+        self.res = 0
+        dfs(root, root.val)
+        return self.res
+```
+</details>
+
+<details>
+ <summary> Python BFS</summary>
+
+```python
+class Solution:
+    def sumNumbers(self, root: TreeNode) -> int:
+        ## BFS
+        if not root: return 0
+        res, queue = 0, collections.deque()
+        queue.append((root, root.val))
+        while queue:
+            node, sum_ = queue.popleft()
+            if not (node.left or node.right):
+                res += sum_
+            if node.left:
+                queue.append((node.left, sum_*10 + node.left.val))
+            if node.right:
+                queue.append((node.right, sum_*10 + node.right.val))
+        return res
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$ # 最坏情况，二叉数退化为单链表
+
+#### 题目描述
+{{< notice note >}}
+
+{{< /notice >}}
+#### 思路
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：
+- 空间复杂度：
 
 ## 扩展
 <!--
