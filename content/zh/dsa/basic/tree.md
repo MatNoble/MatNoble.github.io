@@ -13,7 +13,7 @@ mathjax = true
   - [x] [104. 二叉树的最大深度](./#104-二叉树的最大深度)
   - [x] [100. 相同的树](./#100-相同的树)
   - [x] [129. 求根到叶子节点数字之和](./#129-求根到叶子节点数字之和)
-  - [ ] [ ]()
+  - [ ] [513. 找树左下角的值](513-找树左下角的值)
 - [扩展](./#扩展)
 
 ## 每日一题
@@ -202,23 +202,120 @@ class Solution:
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$ # 最坏情况，二叉数退化为单链表
 
+### 513. 找树左下角的值
+https://leetcode-cn.com/problems/find-bottom-left-tree-value/
 #### 题目描述
 {{< notice note >}}
+给定一个二叉树，在树的最后一行找到最左边的值。
 
+**示例 1:**
+```
+输入:
+
+    2
+   / \
+  1   3
+
+输出:
+1
+```
+
+**示例 2:**
+```
+输入:
+
+        1
+       / \
+      2   3
+     /   / \
+    4   5   6
+       /
+      7
+
+输出:
+7
+```
+**注意:** 您可以假设树（即给定的根节点）不为 **NULL**。
 {{< /notice >}}
 #### 思路
+- DFS 深度优先搜索
+  - 借助递归
+  - 初始化 `self.res = [root.val, 0]`
+  - 到达 `叶子节点`：
+    - 若 `self.res[1] < k`，更新 `self.res = [node.val, k]`
+    - 否则，`return`
+  - 否则，向左或向右递归
+- BFS 0 广度优先搜索
+  - 对 [剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/) 作小改动
+- BFS 1 广度优先搜索
+  - 借助双端队列
+  - 每层 `由右向左` 遍历
+  - 最后一个 `node` 即为所求
+
 #### 代码
 <details>
- <summary> Python </summary>
+ <summary> Python DFS</summary>
 
 ```python
+class Solution:
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        ## DFS
+        def dfs(node, k):
+            if not (node.left or node.right):
+                if self.res[1] < k:
+                    self.res = [node.val, k]
+                return
+            if node.left:  dfs(node.left, k+1)  # 向左递归
+            if node.right: dfs(node.right, k+1) # 向右递归
+        self.res = [root.val, 0]
+        dfs(root, 0)
+        return self.res[0]
+```
+</details>
 
+<details>
+ <summary> Python BFS 0</summary>
+
+```python
+class Solution:
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        ## BFS 0
+        res, queue = [], collections.deque()
+        queue.append((root, 0))
+        while queue:
+            node, k = queue.popleft()
+            if k >= len(res): res.append([])
+            res[k].append(node.val)
+            if node.left:
+                queue.append((node.left, k+1))
+            if node.right:
+                queue.append((node.right, k+1))
+        return res[-1][0]
+```
+</details>
+
+<details>
+ <summary> Python BFS 1</summary>
+
+```python
+class Solution:
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        ## BFS 1
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            node = queue.popleft()
+            if node.right:
+                queue.append(node.right)
+            if node.left:
+                queue.append(node.left)
+        return node.val
 ```
 </details>
 
 #### 复杂度
-- 时间复杂度：
-- 空间复杂度：
+- 时间复杂度：$O(n)$
+- 空间复杂度：BFS 0: $O(n)$, 其余，$O(1)$
 
 ## 扩展
 <!--
