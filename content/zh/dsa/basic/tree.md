@@ -14,6 +14,7 @@ mathjax = true
   - [x] [100. 相同的树](./#100-相同的树)
   - [x] [129. 求根到叶子节点数字之和](./#129-求根到叶子节点数字之和)
   - [x] [513. 找树左下角的值](./#513-找树左下角的值)
+  - [x] [297. 二叉树的序列化与反序列化](./#297-二叉树的序列化与反序列化)
 - [扩展](./#扩展)
 
 ## 每日一题
@@ -316,6 +317,149 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$
+
+### 297. 二叉树的序列化与反序列化
+https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree
+#### 题目描述
+{{< notice note >}}
+序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。
+
+请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。
+
+**示例 1：**
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210217155428.png"/>
+**输入**：`root = [1,2,3,null,null,4,5]`  
+**输出**：`[1,2,3,null,null,4,5]`
+
+**示例 2：**
+**输入**：`root = []`  
+**输出**：`[]`
+{{< /notice >}}
+#### 思路
+将 `None` 补充为 `X`
+- DFS
+  - 序列化：处理根节点，将子树交给递归
+  - 反序列化：构建二叉树
+- BFS
+  - 序列化：常规双端队列
+  - **反序列化**：
+    - `data`: 序列化节点列表（包含`X`）
+    - `queue`: 层序存储非空节点
+#### 代码
+<details>
+ <summary> Python DFS </summary>
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root: return 'X'
+        return str(root.val) + ',' + self.serialize(root.left) + ',' + self.serialize(root.right)
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        :type data: str
+        :rtype: TreeNode
+        """
+        data = collections.deque(data.split(','))
+        root = self.buildTree(data)
+        return root
+
+    
+    def buildTree(self, data):
+        val = data.popleft()
+        if val == 'X': return None
+        node = TreeNode(val)
+        node.left  = self.buildTree(data)
+        node.right = self.buildTree(data)
+        return node
+        
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
+```
+</details>
+
+<details>
+ <summary> Python BFS </summary>
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root: return []
+        res, queue = '', collections.deque()
+        queue.append(root)
+        while queue:
+            node = queue.popleft()
+            if not node:
+                res += 'X,'
+            else:
+                res += str(node.val) + ','
+                queue.append(node.left)
+                queue.append(node.right)
+        return res
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        :type data: str
+        :rtype: TreeNode
+        """
+        if not data: return None
+        data = collections.deque(data.split(','))
+        root = TreeNode(data.popleft())
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            node = queue.popleft()
+            if data:
+                val = data.popleft()
+                if val != 'X':
+                    node.left = TreeNode(val)
+                    queue.append(node.left)
+            if data:
+                val = data.popleft()
+                if val != 'X':
+                    node.right = TreeNode(val)
+                    queue.append(node.right)
+        return root
+        
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
 
 ## 扩展
 <!--
