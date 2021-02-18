@@ -15,6 +15,7 @@ mathjax = true
   - [x] [129. 求根到叶子节点数字之和](./#129-求根到叶子节点数字之和)
   - [x] [513. 找树左下角的值](./#513-找树左下角的值)
   - [x] [297. 二叉树的序列化与反序列化](./#297-二叉树的序列化与反序列化)
+  - [x] [987. 二叉树的垂序遍历](./#987-二叉树的垂序遍历)
 - [扩展](./#扩展)
 
 ## 每日一题
@@ -460,6 +461,97 @@ class Codec:
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$
 
+### 987. 二叉树的垂序遍历
+https://leetcode-cn.com/problems/vertical-order-traversal-of-a-binary-tree/
+#### 题目描述
+{{< notice note >}}
+给你二叉树的根结点 `root` ，请你设计算法计算二叉树的**垂序遍历**序列。
+
+对位于 `(row, col)` 的每个结点而言，其左右子结点分别位于 `(row + 1, col - 1)` 和 `(row + 1, col + 1)` 。树的根结点位于 `(0, 0)`。
+
+二叉树的**垂序遍历**从最左边的列开始直到最右边的列结束，按列索引每一列上的所有结点，形成一个按出现位置从上到下排序的有序列表。如果同行同列上有多个结点，则按结点的值从小到大进行排序。
+
+返回二叉树的**垂序遍历**序列。
+
+**示例:**
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210218095446.png"/>
+
+**输入:** root = [1,2,3,4,6,5,7]   
+**输出:** [[4],[2],[1,5,6],[3],[7]]  
+**解释：**  
+这个示例实际上与示例 2 完全相同，只是结点 5 和 6 在树中的位置发生了交换。  
+因为 5 和 6 的位置仍然相同，所以答案保持不变，仍然按值从小到大排序。
+
+**提示：**
+- 树中结点数目总数在范围 `[1, 1000]` 内
+- `0 <= Node.val <= 1000`
+{{< /notice >}}
+#### 思路
+- 构建字典
+  - `key`: `col`
+  - `value`: `[row, node.val]` 
+- 对字典两次排序输出
+  - 首先, 对 `列标 col` 排序
+  - 然后, 对二维数组 `[[row, node.val], ... ,[row*, node*.val]]` 的 `row` 和 `val` 依次排序
+  - 以上都用 `sorted()` 实现
+- DFS 深度优先搜索
+  - 递归实现
+- BFS 广度优先搜索
+  - 双端列表实现
+
+#### 代码
+<details>
+ <summary> Python DFS </summary>
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:     
+        vertical = collections.defaultdict(list)
+        def dfs(node,row=0,col=0):
+            if node is None: return None
+            dfs(node.left  ,row+1,col-1)
+            dfs(node.right ,row+1,col+1)
+            vertical[col].append([row, node.val])    
+        dfs(root)
+        return [ [node_value for row_value, node_value in sorted(values) ] for col_value, values  in sorted(vertical.items()) ]
+```
+</details>
+
+<details>
+ <summary> Python BFS </summary>
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:     
+        queue, vertical = collections.deque(), collections.defaultdict(list)
+        queue.append((root, 0, 0))
+        while queue:
+            node, row, col = queue.popleft()
+            vertical[col].append([row, node.val])
+            if node.left:
+                queue.append((node.left, row+1, col-1))
+            if node.right:
+                queue.append((node.right, row+1, col+1))
+
+        return [ [node_value for row_value, node_value in sorted(values) ] for col_value, values  in sorted(vertical.items()) ]
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
 
 ## 扩展
 
