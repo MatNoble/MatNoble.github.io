@@ -26,6 +26,9 @@ class TreeNode:
 ## DFS 深度优先搜索
 
 ### 前序遍历
+
+[leetcode 144. 二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
+
 {{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/preOrder.svg" title="前序遍历" width=400 >}}
 
 - 定义树  
@@ -60,7 +63,7 @@ class Solution:
 ```
 
 - 非递归
-  - 借助 **堆** `先进后出` 特性, 先将右子树入栈, 再将左子树入栈
+  - 借助 **堆** `先进后出` 特性, **先将右子树入栈, 再将左子树入栈**
   - 时间复杂度: $O(n)$
   - 空间复杂度: $O(n)$
 ```python
@@ -87,6 +90,8 @@ print(mat.preorderTraversalRecursion(root)) # [1, 2, 3, 4, 5, 6]
 ```
 
 ### 中序遍历
+
+[leetcode 94. 二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
 
 {{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/inOrder.svg" title="中序遍历" width=400 >}}
 
@@ -144,6 +149,9 @@ print(mat.inorderTraversalRecursion(root)) # [1,2,3,4,5,6]
 ```
 
 ### 后序遍历
+
+[leetcode 145. 二叉树的后序遍历](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
+
 {{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/postOrder.svg" title="后序遍历" width=400 >}}
 
 - 递归
@@ -189,11 +197,15 @@ class Solution:
 {{< imgcap src="https://cdn.jsdelivr.net/gh/MatNoble/Images/levelOrder.svg" title="层序遍历" width=400 >}}
 
 #### 正序
+
+[leetcode 102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+
 ```python
 class Solution:
     def levelTraversalLeft(self, root: TreeNode) -> List[List[int]]:
         if not root: return []
-        res, queue = [], collections.deque()
+        from collections import deque
+        res, queue = [], deque()
         queue.append(root)
         while queue:
             n, level = len(queue), []
@@ -231,7 +243,7 @@ class Solution:
 
 ```python
 class Solution:
-    def levelTraversal(self, root: TreeNode, k=-1) -> List[List[int]]:
+    def levelTraversal(self, root: TreeNode) -> List[List[int]]:
         if not root: return []
         res, queue = [], collections.deque()
         queue.append(root)
@@ -239,10 +251,7 @@ class Solution:
             n, level = len(queue), collections.deque()
             for _ in range(n):
                 node = queue.popleft()
-                if k == -1: ## 左 --> 右
-                    level.append(node.val)
-                else:       ## 右 --> 左
-                    level.appendleft(node.val)
+                level.appendleft(node.val)
                 if node.left:
                     queue.append(node.left)
                 if node.right:
@@ -253,14 +262,17 @@ class Solution:
 
 #### 锯齿
 
+[剑指 offer 剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
+
 ```python
 class Solution:
-    def levelTraversalJagged(self, root: TreeNode, k=-1) -> List[List[int]]:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root: return []
-        res, queue = [], collections.deque()
+        from collections import deque
+        k, res, queue = 1, [], deque()
         queue.append(root)
         while queue:
-            n, level = len(queue), collections.deque()
+            n, level = len(queue), deque()
             k *= -1
             for _ in range(n):
                 node = queue.popleft()
@@ -268,10 +280,8 @@ class Solution:
                     level.append(node.val)
                 else:       ## 右 --> 左
                     level.appendleft(node.val)
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
+                if node.left: queue.append(node.left)
+                if node.right:queue.append(node.right)
             res.append(list(level))
         return res
 ```
