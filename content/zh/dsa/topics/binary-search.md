@@ -12,7 +12,7 @@ mathjax = true
   - [x] [69. x 的平方根](./#69-x-的平方根)
 - [推荐](./#推荐题目)
   - [x] [33. 搜索旋转排序数组](./#33-搜索旋转排序数组)
-  - [ ] [81. 搜索旋转排序数组 II](./#81-搜索旋转排序数组-ii)
+  - [x] [81. 搜索旋转排序数组 II](./#81-搜索旋转排序数组-ii)
 ### 69. x 的平方根
 https://leetcode-cn.com/problems/sqrtx/
 #### 题目描述
@@ -129,6 +129,60 @@ class Solution:
 
 
 ### 81. 搜索旋转排序数组 II
+https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/
+#### 题目描述
+{{< notice note >}}
+假设按照升序排序的数组在预先未知的某个点上进行了旋转。
+
+( 例如，数组 $[0,0,1,2,2,5,6]$ 可能变为 $[2,5,6,0,0,1,2]$ )。
+
+编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 `true`，否则返回 `false`。
+
+**示例 1:**  
+**输入:** nums = [2,5,6,0,0,1,2], target = 0  
+**输出:** `true`
+
+**示例 2:**  
+**输入:** nums = [2,5,6,0,0,1,2], target = 3  
+**输出:** `false`
+{{< /notice >}}
+#### 思路
+- 相对于 [33. 搜索旋转排序数组](./#33-搜索旋转排序数组)，本题中**元素可能重复**  
+```python
+while left < mid and nums[left] == nums[mid]: # 消除重复元素
+    left += 1 
+```
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        left, right = 0, len(nums)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if nums[mid] == target: return True
+            while left < mid and nums[left] == nums[mid]: 
+                left += 1 # 消除重复元素
+            if nums[left] <= nums[mid]:  # 左侧为有序序列
+                if nums[left] <= target < nums[mid]:
+                    right = mid-1
+                else:
+                    left = mid+1
+            else:                        # 右侧为有序序列
+                if nums[mid] < target <= nums[right]:
+                    left = mid+1
+                else:
+                    right = mid-1
+        return False
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(logN)$
+- 空间复杂度：$O(1)$
 
 <!-- 模板
 #### 题目描述
