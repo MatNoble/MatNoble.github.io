@@ -28,6 +28,7 @@ mathjax = true
   - [x] [859. 亲密字符串](./#859-亲密字符串)
 - [栈扩展](./#栈扩展)
   - [x] [150. 逆波兰表达式求值](./#150-逆波兰表达式求值)
+  - [x] [1381. 设计一个支持增量操作的栈](./#1381-设计一个支持增量操作的栈)
   - [x] [946. 验证栈序列](./#946-验证栈序列)
 - [队列扩展](./#队列扩展)  
   - [ ] [155. 最小栈]
@@ -994,6 +995,62 @@ mat.evalRPN(tokens)
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
+
+### 1381. 设计一个支持增量操作的栈
+https://leetcode-cn.com/problems/design-a-stack-with-increment-operation/
+#### 题目描述
+{{< notice note >}}
+请你设计一个支持下述操作的栈。
+
+实现自定义栈类 `CustomStack`：
+
+- `CustomStack(int maxSize)`：用 `maxSize` 初始化对象，`maxSize` 是栈中最多能容纳的元素数量，栈在增长到 `maxSize` 之后则不支持 `push` 操作。
+- `void push(int x)`：如果栈还未增长到 `maxSize` ，就将 `x` 添加到栈顶。
+- `int pop()`：弹出栈顶元素，并返回栈顶的值，或栈为空时返回 $-1$ 。
+- `void inc(int k, int val)`：栈底的 `k` 个元素的值都增加 `val` 。如果栈中元素总数小于 `k` ，则栈中的所有元素都增加 `val` 。
+{{< /notice >}}
+#### 思路
+<img src="https://cdn.jsdelivr.net/gh/MatNoble/Images/20210302092517.png"/>
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+class CustomStack:
+
+    def __init__(self, maxSize: int):
+        self.stack = []
+        self.maxSize = maxSize
+        self.size = 0
+        self.increments = []
+
+
+    def push(self, x: int) -> None:
+        if len(self.stack) < self.maxSize:
+            self.stack.append(x)
+            self.size += 1
+            self.increments.append(0)
+
+
+    def pop(self) -> int:
+        if self.size == 0: return -1
+        self.size -= 1
+        if self.size >= 1:
+            self.increments[-2] += self.increments[-1]
+        return self.stack.pop() + self.increments.pop()
+
+
+    def increment(self, k: int, val: int) -> None:
+        k = min(k, self.size)
+        if self.increments:
+            self.increments[k-1] += val
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(1)$
+- 空间复杂度：$O(n)$
 
 ### 946. 验证栈序列
 https://leetcode-cn.com/problems/validate-stack-sequences
