@@ -26,6 +26,8 @@ mathjax = true
 - 每次都要**缩减搜索区域**
 - 每次缩减**不能排除潜在答案**
 
+[Google Colab](https://colab.research.google.com/drive/1UyuRUzcDGW_tsT7GCRNRdO8pu6I718pY?usp=sharing)
+
 ### 模板 1
 
 **找一个准确值**
