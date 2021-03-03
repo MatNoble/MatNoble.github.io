@@ -8,12 +8,100 @@ mathjax = true
 +++
 
 # 目录
+- [二分模板](./#二分模板)
+  - [模板 1](./#模板-1)
+  - [模板 2](./#模板-2)
+  - [模板 3](./#模板-3)
 - [每日一题](./#每日一题)
   - [x] [69. x 的平方根](./#69-x-的平方根)
   - [x] [278. 第一个错误的版本](./#278-第一个错误的版本)
+  - [x] [Triple Inversion](./#triple-inversion)
 - [推荐题目](./#推荐题目)
   - [x] [33. 搜索旋转排序数组](./#33-搜索旋转排序数组)
   - [x] [81. 搜索旋转排序数组 II](./#81-搜索旋转排序数组-ii)
+
+## 二分模板
+
+**两大基本原则**
+- 每次都要**缩减搜索区域**
+- 每次缩减**不能排除潜在答案**
+
+### 模板 1
+
+**找一个准确值**
+- 循环条件：`l <= r`
+- 缩减搜索空间：`l = mid + 1, r = mid - 1`
+
+```python
+def binarySearch(nums, target):
+    l, r = 0, len(nums)-1
+    while l <= r:
+        mid = l + (r - l)//2
+        if nums[mid] == target: 
+            return mid # 返回索引
+        elif target < nums[mid]:
+            r = mid - 1
+        else:
+            l = mid + 1
+    return -1
+```
+
+### 模板 2
+
+**找一个模糊值**
+- 循环条件：`l < r`
+- 缩减搜索空间：`l = mid, r = mid - 1` 或者 `l = mid + 1, r = mid`
+
+```python
+def fuzzy_search_small(nums, target):
+    l, r = 0, len(nums) - 1
+    while l < r:
+        mid = l + (r - l + 1)//2
+        if nums[mid] < target:
+            l = mid
+        else:
+            r = mid - 1
+    return nums[l] if nums[l] < target else -1
+```
+
+```python
+def fuzzy_search_big(nums, target):
+    l, r = 0, len(nums) - 1
+    while l < r:
+        mid = l + (r - l) // 2
+        if nums[mid] <= target:
+            l = mid + 1
+        else:
+            r = mid
+    return nums[l] if nums[l] > target else -1
+```
+
+### 模板 3
+
+**万用型**
+- 循环条件：`l < r - 1`
+- 缩减搜索空间：`l = mid, r = mid`
+
+```python
+def fuzzy_search(nums, target):
+    l, r = 0, len(nums)-1
+    while l < r - 1:
+        mid = l + (r-l)//2
+        if nums[mid] == target: 
+            return [mid] # 返回索引
+        elif nums[mid] < target:
+            l = mid
+        else:
+            r = mid
+
+    tmp = nums[l]/2.0 + nums[r]/2.0 # 中间值
+    if target == tmp:
+        return [l, r]
+    elif target < tmp:
+        return [l]
+    else:
+        return [r]
+```
 
 ## 每日一题
 ### 69. x 的平方根
@@ -123,6 +211,46 @@ class Solution:
 - 时间复杂度：$O(logN)$
 - 空间复杂度：$O(1)$
 
+### Triple Inversion
+https://binarysearch.com/problems/Triple-Inversion
+#### 题目描述
+{{< notice note >}}
+Given a list of integers nums, return the number of pairs `i < j` such that `nums[i] > nums[j] * 3`.
+
+**Constraints**
+- `n ≤ 100,000` where `n` is the length of `nums`
+
+**Example**
+- Input  
+`nums = [7, 1, 2]`
+- Output  
+`2`
+- Explanation  
+`We have the pairs (7, 1) and (7, 2)`
+{{< /notice >}}
+#### 思路
+- 构造递增数组 `d`
+- 借助 [bisect](https://docs.python.org/zh-cn/3.9/library/bisect.html) 模块，边插入边排序
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+class Solution:
+    def solve(self, nums):
+        res, d = 0, []
+        for num in nums:
+            idx = bisect.bisect_right(d, 3*num) # 返回最右侧索引
+            res += len(d) - idx
+            bisect.insort(d, num)
+        return res
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(n)$
 
 ## 推荐题目
 
