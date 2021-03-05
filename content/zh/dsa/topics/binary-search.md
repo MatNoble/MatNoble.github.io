@@ -16,6 +16,7 @@ mathjax = true
   - [x] [69. x 的平方根](./#69-x-的平方根)
   - [x] [278. 第一个错误的版本](./#278-第一个错误的版本)
   - [x] [Triple Inversion](./#triple-inversion)
+  - [ ] [Minimum-Light-Radius](./#minimum-light-radius)
 - [推荐题目](./#推荐题目)
   - [x] [33. 搜索旋转排序数组](./#33-搜索旋转排序数组)
   - [x] [81. 搜索旋转排序数组 II](./#81-搜索旋转排序数组-ii)
@@ -253,6 +254,26 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n^2)$
 - 空间复杂度：$O(n)$
+
+### Minimum-Light-Radius
+https://binarysearch.com/problems/Minimum-Light-Radius
+#### 题目描述
+{{< notice note >}}
+
+{{< /notice >}}
+#### 思路
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：
+- 空间复杂度：
 
 ## 推荐题目
 
