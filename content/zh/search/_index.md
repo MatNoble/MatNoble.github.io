@@ -32,6 +32,7 @@ related = false
 {{< friend name="林深时见璐" url="https://linwhitehat.github.io/" logo="https://linwhitehat.github.io/icons/rabbit512.png" word="Wonderful U - AGA" >}}
 {{< friend name="Refun" url="https://gears233.github.io" logo="https://gears233.github.io/image/logo.jpg" word="重新找回那份简单的快乐…" >}}
 {{< friend name="YIDAJIABEI" url="https://www.yidajiabei.xyz/" logo="https://blog.yidajiabei.xyz/images/logo.png" word="个人生活技术博客，关注 Python、web">}}
+{{< friend name="Wulnut’s space" url="https://www.wulnut.top/" logo="https://www.wulnut.top/Home/index/panda.png" word="Nothing but failure" >}}
 
 <br />
 
