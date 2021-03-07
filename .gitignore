@@ -11,3 +11,5 @@ resources
 
 # ipfs-deploy
 .env
+
+blog.code-workspace
