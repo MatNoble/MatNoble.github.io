@@ -10,10 +10,10 @@ mathjax = true
 # 目录
 - [每日一题](./#每日一题)
  - [x] [1456. 定长子串中元音的最大数目](./#1456-定长子串中元音的最大数目)
+ - [x] [76. 最小覆盖字串](./#76-最小覆盖字串)
 - [推荐](./#推荐题目)
   - [x] [239. 滑动窗口最大值](./#239-滑动窗口最大值)
   - [x] [3. 无重复字符的最长字串](./#3-无重复字符的最长字串)
-  - [ ] [76. 最小覆盖字串](./#76-最小覆盖字串)
   - [ ] [438. 找到字符串中所有字母异位词](./#438-找到字符串中所有字母异位词)
   - [ ] [567. 字符串的排列](./#567-字符串的排列)
 
@@ -85,6 +85,84 @@ class Solution:
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(1)$
+
+### 76. 最小覆盖字串
+https://leetcode-cn.com/problems/minimum-window-substring/
+#### 题目描述
+{{< notice note >}}
+给你一个字符串 `s` 、一个字符串 `t` 。返回 `s` 中涵盖 `t` 所有字符的最小子串。如果 `s` 中不存在涵盖 `t` 所有字符的子串，则返回空字符串 `""` 。
+
+**注意：** 如果 `s` 中存在这样的子串，我们保证它是唯一的答案。
+
+**示例 1：**  
+**输入：** s = "ADOBECODEBANC", t = "ABC"  
+**输出：** "BANC"
+
+**示例 2：**  
+**输入：** s = "a", t = "a"  
+**输出：** "a"
+
+**提示：**  
+- $1 <= s.length, ~t.length <= 10^5$
+- s 和 t 由英文字母组成
+
+**进阶：** 你能设计一个在 o(n) 时间内解决此问题的算法吗？
+{{< /notice >}}
+#### 思路
+- 增加 `valid` 值来..缩放..滑动窗口
+- 使用..滑动窗口..遍历之前，做一些时间复杂度小于 $O(n)$ 的判断，可有可无，极端情况可不用滑动遍历返回结果
+- 经典的滑动窗口操作：
+  - `valid < len(t)`: `right` 指针右移
+  - `valid == len(t)`: 更新..结果.., `left` 右移 
+
+#### 代码
+<details>
+ <summary> Python </summary>
+
+```python
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        ns, nt = len(s), len(t)
+        # 确定有解
+        if ns < nt: return ""
+        # 计数检验
+        dictS, need = collections.Counter(s), collections.Counter(t)
+        for key, value in need.items():
+            if dictS[key] < value: return ""
+        # s 与 t 元素一样
+        if ns == nt: return s
+
+        # 滑动窗口
+        window = defaultdict(lambda: 0) # 初始化空字典
+        left, right, valid, length = 0, 0, 0, ns+1
+        while right < ns:
+            # 移动右边界
+            temp = s[right]
+            # 判断
+            if temp in need:
+                window[temp] += 1
+                if window[temp] <= need[temp]: valid += 1
+            right += 1 # 右边界右移
+            # 缩小左边界
+            while valid == nt:
+                # 判断 + 记录
+                if right - left < length: start, length = left, right - left
+                if length == len(t): return s[start : start+length] # 提前结束
+                temp = s[left]
+                if temp in need:
+                    if window[temp] == need[temp]: valid -= 1
+                    window[temp] -= 1
+                left += 1
+        return s[start : start+length]
+```
+</details>
+
+#### 复杂度
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
+
+<hr />
 
 ### 239. 滑动窗口最大值
 https://leetcode-cn.com/problems/sliding-window-maximum/
@@ -217,8 +295,6 @@ mat.lengthOfLongestSubstring(s)
 #### 复杂度
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$
-
-### 76. 最小覆盖字串
 
 ### 438. 找到字符串中所有字母异位词
 
