@@ -77,7 +77,7 @@ class Solution:
             if s[i+k] in table: count += 1
             if res == k: break
             elif res < count:
-              res = count
+                res = count
         return res
 ```
 </details>
