@@ -158,13 +158,11 @@ https://leetcode-cn.com/problems/new-21-game/
 ```python
 class Solution:
     def new21Game(self, N: int, K: int, W: int) -> float:
-        dp, sum_ = [0] * (K+W), 0
-        for i in range(K, K+W):
-            if i <= N:
-                dp[i] = 1
-                sum_ += dp[i]
-            else:
-                break
+        dp = [0] * (K+W)
+        # 概率确定
+        dp[K:N+1] = [1] * (N-K+1)
+        sum_ = (N-K+1)
+        # 递推计算概率
         for i in range(K-1, -1, -1):
             dp[i] = sum_ / W
             sum_ += (dp[i] - dp[W+i])
