@@ -4,11 +4,18 @@
 [![Generator](https://img.shields.io/badge/Generator-Hugo-ff4088?&logo=hugo)](https://gohugo.io/)
 [![Theme](https://img.shields.io/badge/Theme-MemE-2a6df4)](https://github.com/reuixiy/hugo-theme-meme)
 [![Built on GitHub](https://github.com/MatNoble/matnoble.github.io/workflows/build/badge.svg)](https://github.com/MatNoble/matnoble.github.io/actions)
-
+[![time tracker](https://wakatime.com/badge/github/MatNoble/matnoble.github.io.svg)](https://wakatime.com/badge/github/MatNoble/matnoble.github.io)
 
 关键词： 生活、学习、数学、线性代数、有限元、计算机、Matlab、Python、LaTeX
 
 ## 文章精选
+
+- <a href="https://matnoble.me/tags/%E7%BC%96%E7%A8%8B%E5%88%B7%E9%A2%98/">刷题汇总</a>
+
+  - <a href="https://matnoble.me/tags/%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/">高频面试题</a>
+  - <a href="https://matnoble.me/dsa/codinginterviews/">剑指 offer</a>
+  - <a href="https://matnoble.me/dsa/topics/binary-search/">二分法</a>
+  - <a href="https://matnoble.me/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
 
 - <a href="https://matnoble.me/categories/%E5%https://github.com/MatNoble/LaTeX-Document/blob/master/LICENSEBB%BA%E7%AB%99%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"> 建站那些事</a>
   
