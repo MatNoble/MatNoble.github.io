@@ -6,11 +6,11 @@
 [![Built on GitHub](https://github.com/MatNoble/matnoble.github.io/workflows/build/badge.svg)](https://github.com/MatNoble/matnoble.github.io/actions)
 [![time tracker](https://wakatime.com/badge/github/MatNoble/matnoble.github.io.svg)](https://wakatime.com/badge/github/MatNoble/matnoble.github.io)
 
-关键词： 生活、学习、数学、线性代数、有限元、计算机、Matlab、Python、LaTeX
+关键词： 生活、学习、数学、机器学习、线性代数、有限元、计算机、Python、Matlab、、LaTeX
 
 ## 文章精选
 
-- <a href="https://matnoble.me/tags/%E7%BC%96%E7%A8%8B%E5%88%B7%E9%A2%98/">刷题汇总</a>
+- <a href="https://matnoble.me/tags/%E7%BC%96%E7%A8%8B%E5%88%B7%E9%A2%98/">互联网刷题汇总</a>
 
   - <a href="https://matnoble.me/tags/%E9%AB%98%E9%A2%91%E7%AE%97%E6%B3%95%E9%A2%98/">高频面试题</a>
   - <a href="https://matnoble.me/dsa/codinginterviews/">剑指 offer</a>
