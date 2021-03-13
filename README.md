@@ -6,7 +6,9 @@
 [![Built on GitHub](https://github.com/MatNoble/matnoble.github.io/workflows/build/badge.svg)](https://github.com/MatNoble/matnoble.github.io/actions)
 [![time tracker](https://wakatime.com/badge/github/MatNoble/matnoble.github.io.svg)](https://wakatime.com/badge/github/MatNoble/matnoble.github.io)
 
-关键词： 生活、学习、数学、机器学习、线性代数、有限元、计算机、Python、Matlab、、LaTeX
+> 关键词： 生活、学习、数学、机器学习、线性代数、有限元、计算机、Python、Matlab、、LaTeX
+
+<hr />
 
 ## 文章精选
 
@@ -16,15 +18,7 @@
   - <a href="https://matnoble.me/dsa/codinginterviews/">剑指 offer</a>
   - <a href="https://matnoble.me/dsa/topics/binary-search/">二分法</a>
   - <a href="https://matnoble.me/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
-
-- <a href="https://matnoble.me/categories/%E5%https://github.com/MatNoble/LaTeX-Document/blob/master/LICENSEBB%BA%E7%AB%99%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"> 建站那些事</a>
   
-  - <a href="https://matnoble.me/tech/hugo/shortcodes-practice-tutorial-for-hugo/"> Shortcodes 实践教程 </a>
-
-- <a href="https://matnoble.me/series/latex/">LaTeX 科技排版专题</a>
-  
-  - <a href="https://matnoble.me/tech/latex/typeset-bbt/">科技文档排版漫谈</a>
-
 - <a href="https://matnoble.me/series/mla/"> 线代拾遗 </a> 
   
   - <a href="https://matnoble.me/math/linear-algebra/diag/"> 矩阵对角化那些事 </a> 
@@ -40,11 +34,7 @@
   - <a href="https://matnoble.me/math/linear-algebra/solve-svd-by-hand/">「手撕」奇异值分解 SVD</a>
   - <a href="https://matnoble.me/math/linear-algebra/vector-and-matrix-norm/">向量范数与矩阵范数</a>
   - <a href="https://matnoble.me/math/fem/inequality/">Inequality</a>
-
-- <a href="https://matnoble.me/tech/draw/">一图胜前言</a>
   
-  - <a href="https://matnoble.me/tech/draw/comparison-drawing-software/">绘图软件大比拼</a>
-
 - <a href="https://matnoble.me/tags/ubuntu-%E8%A3%85%E6%9C%BA%E4%B8%8E%E4%BC%98%E5%8C%96/">Ubuntu 优化</a>
   
   - <a href="https://matnoble.me/tech/ubuntu/configure-python-environment-in-ubuntu/">在 Ubuntu 中配置 Python 环境</a>
@@ -58,16 +48,26 @@
 
 - <a href="https://matnoble.me/tech/programming/git/">个人 Git 使用笔记</a>
 
-## 关注我吧 公众号: 「数系家园」
+- <a href="https://matnoble.me/categories/%E5%https://github.com/MatNoble/LaTeX-Document/blob/master/LICENSEBB%BA%E7%AB%99%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"> 建站那些事</a>
+  
+  - <a href="https://matnoble.me/tech/hugo/shortcodes-practice-tutorial-for-hugo/"> Shortcodes 实践教程 </a>
+
+- <a href="https://matnoble.me/series/latex/">LaTeX 科技排版专题</a>
+  
+  - <a href="https://matnoble.me/tech/latex/typeset-bbt/">科技文档排版漫谈</a>
+
+<hr />
+
+### 关注我吧 公众号: 「数系家园」
 
 <p align="center">
 <img src="https://cdn.jsdelivr.net/gh/MatNoble/Images@master/uPic/uXiJsM.jpg"
 </p>
 
-## 授权情况
+### 授权情况
 
 本模板代码按 [CC 4.0 BY-SA](https://github.com/MatNoble/matnoble.me/blob/master/CC-BY-SA-4.0) 授权, 转载请附上原文出处链接和本声明.
 
-## 联系方式
+### 联系方式
 
 Mail: [hustmatnoble@gmail.com](mailto:hustmatnoble@gmail.com)
